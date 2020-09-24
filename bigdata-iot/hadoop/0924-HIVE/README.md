@@ -17,13 +17,15 @@
     GRANT   ALL   ON   *.*  TO   hive@'localhost'  IDENTIFIED  BY  '111111';
     GRANT   ALL   ON   *.*  TO   hive@'192.168.111.120'  IDENTIFIED  BY  '111111';
     GRANT   ALL   ON   *.*  TO   hive@'hadoop'  IDENTIFIED  BY  '111111';
+    
+    SELECT  user, host  FROM  user;
     exit;
     ```
-    ```
-    2. hive로 로그인 가능
 
-        ```bash
-        $ mysql -h localhost  -u  hive  -p
+2. hive로 로그인 가능
+
+    ```bash
+    $ mysql -h localhost  -u  hive  -p
     ```
 
     ```sql
@@ -31,7 +33,7 @@
     exit;
     ```
 
-2. hive 설치
+3. hive 설치
 
     >  /usr/local
 
@@ -42,13 +44,15 @@
     $ cp -r hive /usr/local
     ```
 
-3. hive 라이브러리에 MariaDB 자바 클라이언트 추가
+4. hive 라이브러리에 MariaDB 자바 클라이언트 추가
 
     ```bash
     $ cp mariadb-java-client-1.3.5.jar /usr/local/hive/lib
     ```
 
-4. 환경설정 : hive-site.xml
+5. 환경설정 : hive-site.xml
+
+    > 복붙할때 쓰레기 데이터 들어가는 경우 잦으니 주의 ㅠ
 
     ```bash
     $ cd /usr/local/hive/conf
@@ -89,10 +93,10 @@
     </configuration>
     ```
 
-5. 환경설정 /etc/profile
+6. 환경설정 /etc/profile
 
     ```bash
-    $ cd /etc/profile
+    $ vi /etc/profile
     ```
 
     > 순서 달라도 실행 안될 수 있으니 주의!
@@ -108,7 +112,13 @@
     59 PATH=$JAVA_HOME/bin:$HADOOP_HOME/bin:$HIVE_HOME/bin:.:$PATH
     ```
 
-6. hive가 hadoop을 쓸거야!
+    > 위 내용 반영 위해 반드시 실행! 
+
+    ```bash
+    $ source /etc/profile
+    ```
+
+7. hive가 hadoop을 쓸거야!
 
     ```bash
     # 하둡실행
@@ -123,7 +133,7 @@
     $ hadoop fs -chmod 777 /user/root/warehouse
     ```
 
-7.  hive 실행
+8. hive 실행
 
     ```bash
     $ hive
@@ -330,7 +340,13 @@ $ hive --service hiveserver2
 ## Workshop
 
 1. hadoop2 서버에 hadoop, MySQL 실행
+
+   > hostname, ifconfig
+
 2. HIVE 설치
+
 3. HIVE 예제 실행
+
 4. ari data 입력 및 분석
+
 5. Java Application 구현하여 hive와 연동
