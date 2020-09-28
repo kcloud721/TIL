@@ -38,5 +38,39 @@
   //1번째 원소를 출력
   ```
 
-  
+* iterator (반복)
 
+  * ArrayList를 탐색할 때는 Iterator를 사용. 반복기법?
+
+  ```java
+  // 객체 선언
+  Iterator it<Integer> = numbers.iterator();
+  ```
+
+  * `it.next()` : 호출될 때 마다 다음 순서의 원소를 리턴
+
+     `it.hasNext()` : 더 순회할 엘레먼트가 있는지 알 수 있음. `it.next()` 가 끝까지 도달할 경우 `it.hasNext` 는 false를 리턴하여 while 문 종료
+
+  ```java
+  while(it.hasNext()) {
+  			System.out.println("1st: "+it.next());
+  			int value = it.next();
+  			System.out.println("2nd: "+value);
+  			if(value == 2) {
+  				System.out.println("wat"+it);
+  				it.remove();
+  			}
+  	}
+  ```
+
+  ```bash
+  입력 : [3, 9, 1, 2, 8]
+  결과 : 
+  3
+  9
+  1
+  2
+  8
+  ```
+
+  
