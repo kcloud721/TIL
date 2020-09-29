@@ -92,9 +92,7 @@ expected at least 1 bean which qualifies as autowire candidate for this dependen
 
 
 
-톰캣설치
-
-
+Hadoop에서 로그기록 운용을 위한 MariaDB 테이블 구조 선언
 
 ```sql
 CREATE TABLE shopclick(
@@ -111,6 +109,64 @@ ROW FORMAT DELIMITED
     FIELDS TERMINATED BY ','
     LINES TERMINATED BY '\n'
     STORED AS TEXTFILE;
+```
+
+
+
+크론캣? 크롬탭?
+
+`cd` root에 `vi hive.sh`
+
+```sh
+#!/bin/sh
+
+date=`date`
+echo $date
+partitionName="${date:0:4}-${date:6:2}-${date:10:2}"
+echo $partitionName
+fileName="data.log.$partitionName"
+echo $fileName
+```
+
+> partitionName="${date:0:4}-${date:6:2}-${date:10:2}" 
+>
+> 연 월 일을 기준으로 파티션
+
+ 동작 확인
+
+```bash
+$ chmod 777 hive.sh
+$ hive.sh
+2020. 09. 29. (화) 18:16:52 KST
+2020-09-29
+data.log.2020-09-29
+```
+
+hive.sh 밑에 추가
+
+> 오늘 날짜가 확장자로 되어있는 파일을 로드 ex) data.log.2020-09-28
+
+```sh
+echo "Load the Data ?"
+read yn
+if [ $yn == "y" ]
+then
+echo "Start Load the Data ..."
+if [ -f /root/logs/$fileName ]
+then
+hive << EOF
+LOAD DATA LOCAL INPATH '/root/logs/$fileName' OVERWRITE INTO TABLE shopclick PARTITION (logdate="$partitionName");
+EOF
+echo "OK"
+echo "OK"
+else
+echo "File Not Found"
+echo "Exit Now..."
+fi
+else
+echo "Exit Now..."
+fi
+exit 0
 ```
 
 
