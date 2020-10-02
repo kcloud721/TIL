@@ -21,11 +21,34 @@ https://programmers.co.kr/learn/courses/30/lessons/42576
 
 ### 42576-sol1.java
 
-​	배열과 반복문을 써서 풀면 답은 알맞게 나오지만 응답시간이 길어 실패
+배열과 반복문을 써서 풀면 답은 알맞게 나오지만 응답시간이 길어 실패. 시간복잡도를 고려해서 다시 풀 필요가 있음
 
-​	시간복잡도를 고려해서 다시 풀 필요가 있음
+### 42576-sol2.java
 
-### 424576-sol2.java
+java는 배열을 정렬할 수 있는 `sort` 함수를 제공한다.
+
+#### 	Arrays.sort
+
+```java
+int num[] = {37, 27, 40, 30, 28, 19};
+System.out.println(Arrays.toString(num));
+
+Arrays.sort(num);
+System.out.println(Arrays.toString(num));
+```
+
+```java
+[37, 27, 40, 30, 28, 19]
+[19, 27, 28, 30, 37, 40]
+```
+
+오름차순으로 정렬됨을 확인할 수 있음!
+
+`sol1` 코드 앞에 `Arrays.sort` 만 붙여봤으나 이 역시 효율성 테스트에서 `케이스1`을 제외하고는 통과하지 못했다. 이미 정렬되어있기 때문에 for 문을 굳이 처음부터 돌릴 필요가 없는 것이다. `cnt` 변수를 추가하여 `j` for문의 시작점을 `0` 이 아닌 `cnt` 로 지정하면 성공!
+
+### 42576-sol3.java
+
+문제 분류가 HashMap으로 되어있으므로 이를 사용하여 풀이해보자!
 
 ### Heap.java
 
