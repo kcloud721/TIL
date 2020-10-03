@@ -27,7 +27,7 @@ https://programmers.co.kr/learn/courses/30/lessons/42576
 
 java는 배열을 정렬할 수 있는 `sort` 함수를 제공한다.
 
-#### 	Arrays.sort
+#### 	Arrays.sort에 대하여
 
 ```java
 int num[] = {37, 27, 40, 30, 28, 19};
@@ -49,6 +49,10 @@ System.out.println(Arrays.toString(num));
 ### 42576-sol3.java
 
 문제 분류가 HashMap으로 되어있으므로 이를 사용하여 풀이해보자!
+
+#### [HashMap에 대하여](/HashMap.md)
+
+
 
 ### Heap.java
 
