@@ -50,7 +50,7 @@ System.out.println(Arrays.toString(num));
 
 문제 분류가 HashMap으로 되어있으므로 이를 사용하여 풀이해보자!
 
-#### [HashMap에 대하여](/HashMap.md)
+#### [HashMap에 대하여](https://github.com/kcloud721/TIL/blob/master/algorithms/programmers/42576/HashMap.md)
 
 
 

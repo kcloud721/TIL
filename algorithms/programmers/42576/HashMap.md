@@ -151,4 +151,15 @@ map.put(5, "grape");
   >
   > [key]:5 [Value]:grape
 
-  
+## ++
+
+### getOrDefault
+
+```java
+default V getOrDefault(Object key, V defaultValue)
+```
+
+찾는 key가 존재하면 그 key의 value를 반환하고, 없으면 기본값을 반환
+
+
+
