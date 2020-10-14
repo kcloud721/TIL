@@ -9,9 +9,9 @@
 
 
 
-인텐트의 세컨드 액티비티와 프래그먼트의 차이점?
+## 인텐트의 세컨드 액티비티와 프래그먼트의 차이점?
 
-
+[읽어보기](https://ksb0511.tistory.com/entry/Fragment%EC%97%90%EC%84%9C-Activity%EB%A1%9C-%ED%99%94%EB%A9%B4%EC%A0%84%ED%99%98)
 
 # 안드로이드 패키지 
 
