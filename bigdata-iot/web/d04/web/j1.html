@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style>
+
+</style>
+<script>
+function myFunction(){
+	var data = 10;
+	//alert('OK '+data);
+	console.log('OK ' +data);
+	//document.getElementById("demo").innerHTML = "Paragraph changed."; //old HTML
+	document.querySelector('h2').innerHTML = "P changed."; //HTML5
+}
+</script>
+</head>
+<body>
+<h1> javascript test</h1>
+<button onclick="myFunction();">click</button>
+<h2 id="demo">result</h2>
+
+</body>
+</html>

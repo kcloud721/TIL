@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="register" method="GET">
+	<fieldset>
+	<legend>Register Page</legend>
+	<!-- label 유형1 -->
+	<label>text <input type="text" name="t1"><br></label> 
+	<!--label 유형2 : name 아니고 id를 사용 -->
+	<input type="password" name="p1" id="p1"><br>
+	radio button<br>
+	학생<input type="radio" name="r1" value="rv1"><br>
+	선생<input type="radio" name="r1" value="rv2"><br>
+	교장<input type="radio" name="r1" value="rv3"><br>
+	<br>
+	check box<br>
+	공부<input type="checkbox" name="c1" value="공부"><br>
+	운동<input type="checkbox" name="c1" value="운동"><br>
+	먹기<input type="checkbox" name="c1" value="먹기"><br>
+	<br>
+	FILE<input type="file" name="file"><br>
+	<input type="hidden" name="id" value="id01"><br>
+	
+	자기소개<br>
+	<textarea rows="10" cols="50" name="tt"></textarea>
+	<br>
+	Select
+	<select name="ss">
+		<option value="k1">K1</option>
+		<option value="k2">K2</option>
+		<option value="k3">K3</option>
+	</select>
+	
+	<br><br>
+	<input type="submit" value="전송">
+	<input type="reset" value="취소"><br>
+	</fieldset>
+</form>
+
+</body>
+</html>

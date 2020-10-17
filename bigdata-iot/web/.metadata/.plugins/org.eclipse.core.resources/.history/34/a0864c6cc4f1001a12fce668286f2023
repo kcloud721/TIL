@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ReserveDao">
+
+	<insert id="insert" parameterType="reserveVO">
+		INSERT INTO HOTEL_RESERVE(rsv_id, hotel_id, room_id, user_email, start_date, end_date, pay_yn) VALUES (('rv'||lpad(rsv_seq.nextval, 4, '0')),#{hotel_id},#{room_id},#{user_email},#{start_date},#{end_date},#{pay_yn})
+	</insert>
+
+	<update id="update" parameterType="reserveVO">
+		UPDATE HOTEL_RESERVE R
+		SET R.HOTEL_ID=(SELECT H.HOTEL_ID FROM HOTEL_LIST H WHERE H.HOTEL_NAME='#{hotel_name}'),
+		R.USER_EMAIL=(SELECT U.EMAIL FROM USERS U WHERE U.NAME='#{name}'),
+		R.ROOM_ID=(SELECT RM.ROOM_ID FROM HOTEL_ROOM RM WHERE RM.ROOM_NAME='#{room_name}' AND 
+		                                                    RM.HOTEL_ID=(SELECT H2.HOTEL_ID FROM HOTEL_LIST H2 WHERE H2.HOTEL_NAME='#{hotel_name}')),
+		R.START_DATE=TO_DATE(#{start_date}),
+		R.END_DATE=TO_DATE(#{end_date}),
+		R.PAY_YN=#{pay_yn}
+		WHERE R.RSV_ID=#{rsv.id}
+	</update>
+
+	<delete id="delete" parameterType="String">
+		DELETE FROM HOTEL_RESERVE WHERE RSV_ID=#{k}
+	</delete>
+
+	<!-- ALL JOIN.. RESERVE JOIN ON HOTEL + ROOM + USER  -->
+	<select id="select" parameterType="String" resultType="reserveVO">
+		SELECT * FROM HOTEL_RESERVE RSV
+			JOIN USERS U ON(RSV.USER_EMAIL = U.EMAIL)
+			JOIN HOTEL_LIST H ON(RSV.HOTEL_ID = H.HOTEL_ID)
+			JOIN HOTEL_ROOM RM ON(RSV.ROOM_ID = RM.ROOM_ID)
+		WHERE RSV.RSV_ID=#{k}
+	</select>
+
+	<select id="selectall" resultType="reserveVO">
+		SELECT * FROM HOTEL_RESERVE RSV
+			JOIN USERS U ON(RSV.USER_EMAIL = U.EMAIL)
+			JOIN HOTEL_LIST H ON(RSV.HOTEL_ID = H.HOTEL_ID)
+			JOIN HOTEL_ROOM RM ON(RSV.ROOM_ID = RM.ROOM_ID)
+		WHERE TO_DATE(RSV.START_DATE) >= TO_DATE(SYSDATE)
+		ORDER BY RSV.RSV_ID
+	</select>
+
+	<!-- Reservations Staying Today -->
+	<select id="selectall_count" resultType="String">
+		SELECT COUNT(*) FROM HOTEL_RESERVE
+		WHERE TO_DATE(SYSDATE) BETWEEN TO_DATE(START_DATE) AND TO_DATE(END_DATE)
+	</select>
+
+	<select id="selectN" parameterType="String" resultType="reserveVO">
+	select rsv.rsv_id, h.hotel_id, h.hotel_name, rm.room_id, rm.room_name, to_char(rsv.rsv_date, 'yyyy-MM-dd')as rsv_date, to_char(rsv.start_date, 'yyyy-MM-dd') as start_date, to_char(rsv.end_date,'yyyy-MM-dd') as end_date, rsv.pay_yn from hotel_reserve rsv
+	    	JOIN HOTEL_LIST H ON(RSV.HOTEL_ID = H.HOTEL_ID)
+			JOIN HOTEL_ROOM RM ON(RSV.ROOM_ID = RM.ROOM_ID) 
+			where user_email=#{email}
+	</select>
+
+	<insert id="insertAdminForm" parameterType="reserveVO">
+		INSERT INTO HOTEL_RESERVE VALUES (#{rsv_id},#{hotel_id},#{room_id},#{user_email},#{start_date},#{end_date},#{rsv_date},#{pay_yn})
+	</insert>
+
+	<!-- Search By Date -->
+	<select id="selectByDate" resultType="reserveVO">
+		SELECT * FROM HOTEL_RESERVE RSV
+			JOIN USERS U ON(RSV.USER_EMAIL = U.EMAIL)
+			JOIN HOTEL_LIST H ON(RSV.HOTEL_ID = H.HOTEL_ID)
+			JOIN HOTEL_ROOM RM ON(RSV.ROOM_ID = RM.ROOM_ID)
+		WHERE TO_DATE(START_DATE) >= TO_DATE(#{start_date}) AND 
+				TO_DATE(END_DATE) &lt;= TO_DATE(#{end_date}) AND
+			H.HOTEL_NAME LIKE '%'||#{hotel_name}||'%' AND
+			U.NAME LIKE '%'||#{name}||'%'
+		ORDER BY RSV.RSV_ID
+	</select>
+
+</mapper>

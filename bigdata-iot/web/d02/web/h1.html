@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+
+<style>
+[required] {
+border-color: #88a;
+-webkit-box-shadow: 0 0 3px rgba(0, 0, 255, .5);
+}
+:invalid {
+border-color: #e88;
+-webkit-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
+}
+</style> 
+
+<body>
+
+<form action="result.jsp" method="post" >
+ <input type="text" name=“id"><br>
+ <input type=“password" name=“pwd"><br>
+ <input type="radio" name="sex"
+ value="male" checked> Male<br>
+ <input type="radio" name="sex"
+ value="female"> Female<br>
+ <select name="cars"><br>
+ <option value="volvo">Volvo</option><br>
+ <option value="saab">Saab</option><br>
+ <option value="fiat">Fiat</option><br>
+ <option value="audi">Audi</option><br>
+ </select>
+ <input type="submit" value=“등록"><br>
+ </form>
+
+<input type="text" required /><br />
+<input type="email" value="some@email.com" />
+<input type="date" min="2015-09-14" max="2016-09-14"
+value="2015-09-14"/>
+<input type="range" min="0" max="50" value="10" />
+<input type="search" results="10" placeholder="Search..." />
+<input type="tel" placeholder="(555) 555-5555"
+pattern="^\(?\d{3}\)?[-\s]\d{3-4}[-\s]\d{4}$" />
+<input type="color" placeholder="e.g. #bbbbbb" />
+<input type="number" step="1" min="-5" max="10" value="0" /> 
+
+</body>
+</html>

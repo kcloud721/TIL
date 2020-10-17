@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+.a{
+	color: white;
+	background: gray;
+}
+.b{
+	color: green;
+}
+</style>
+<script>
+$(document).ready(function(){
+	$('h1').css('color','red');
+	$('h2').click(function(){
+		$('h2').css('color','blue');
+	});
+	$('h3').hover(function(){
+		$('h3').addClass('a');
+	}, function(){
+		$('h3').removeClass('a');
+	});
+	$('h4').on({
+		click: function(){
+			var txt = $('h1').text(); //가져올때
+			$('h2').text(txt); //넣을때 똑같
+		},
+		mouseenter: function(){
+			var txt = '<a href="#">click</a>';
+			$('h3').html(txt);
+		},
+		mouseleave: function(){
+			$('div').slideUp();
+		}
+	});
+	
+	$('button:eq(0)').click(function(){
+		$('div').hide();
+	});
+	$('button:eq(1)').click(function(){
+		$('div').show();
+	});
+});
+</script>
+</head>
+<body>
+<button>C1</button>
+<button>C2</button>
+<div>
+	<h1>header1</h1>
+	<h2>header2</h2>
+	<h3>header3</h3>
+	<h4>header4</h4>
+</div>
+</body>
+</html>

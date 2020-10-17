@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script>
+window.onload = function(){
+	var c=document.getElementById("mycanvas");
+	var ctx=c.getContext("2d");
+	ctx.fillStyle="#A00150";
+	ctx.fillRect(10,10,150,75);
+};
+
+</script>
+
+</head>
+
+
+<style>
+[required] {
+border-color: #88a;
+-webkit-box-shadow: 0 0 3px rgba(0, 0, 255, .5);
+}
+:invalid {
+border-color: #e88;
+-webkit-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
+}
+
+canvas{
+	width: 400px;
+	height: 400px;
+	border: 2px solid red;
+}
+
+</style> 
+
+<body>
+
+<audio controls="controls">
+<source src="ladymov.mp3" type="audio/mpeg" />
+ Your browser does not support the audio element.
+</audio>
+
+
+<video width="320" height="240" controls="controls">
+<source src="http://www.w3schools.com/tags/movie.mp4" type="video/ogg" />
+ Your browser does not support the video.
+</video>
+
+<canvas id="mycanvas"></canvas>
+
+
+
+</body>
+</html>

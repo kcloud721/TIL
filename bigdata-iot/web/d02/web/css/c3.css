@@ -1,0 +1,24 @@
+@charset "EUC-KR";
+
+/* 20200806 */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Roboto+Mono:wght@100&family=Roboto:ital,wght@1,500&display=swap');
+
+h1:nth-child(1){
+	font-family: 'Montserrat', sans-serif;
+	font-size: 200%;
+}
+h1:nth-child(2){
+	font-family: 'Roboto Mono', monospace;
+	text-align: right;
+	
+}
+h1:nth-child(3){
+	font-family: 'Roboto', sans-serif;
+	text-align: center;
+	
+}
+h1:nth-child(4){
+}
+
+

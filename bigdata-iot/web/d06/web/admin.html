@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+html, body {
+	margin: 0;
+	height: 100%;
+	overflow: hidden;
+}
+
+#left {
+	width: 49%;
+	height: 89%;
+	border: 2px solid green;
+	float: left;
+	border: 2px solid green;
+}
+
+#right {
+	width: 49%;
+	height: 89%;
+	overflow: scroll;
+	border: 2px solid blue;
+	float: right;
+}
+
+img {
+	display: inline;
+	width: 30%;
+}
+
+p {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	width: 95%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+</style>
+
+<script>
+	function getData() {
+		var urlstr = "https://dapi.kakao.com/v2/search/vclip";
+		var verb = $('input[name="verb"]').val();
+		$.ajax({
+			method : 'GET',
+			url : urlstr,
+			headers : {
+				'Authorization' : 'KakaoAK d01d86ea12c64f79ed3948ba93236885'
+			},
+			data : {
+				'query' : verb
+			},
+			success : function(data) {
+				$('#kakaoSearch').empty();
+				displayData(data);
+			},
+			error : function() {
+				alert('error');
+			}
+		});
+	};
+	function displayData(querys) {
+		$(querys.documents).each(function(index, str) {
+			var temp = '';
+			temp += '<span><a href='+str.url+'>';
+			temp += '<p>' + '<img src=' +str.thumbnail+'>';
+			temp += str.title + '</p></a></span>';
+			$('#kakaoSearch').append(temp);
+		});
+	};
+	$(document).ready(function() {
+		$('#kakaoButton').click(function() {
+			getData();
+		});
+	});
+</script>
+</head>
+
+<body>
+	<h1>admin</h1>
+	<div id="left"></div>
+	<div id="right">
+		<input type="text" name="verb" value="car">
+		<button id="kakaoButton">search</button>
+		<div id="kakaoSearch"></div>
+	</div>
+
+</body>
+</html>

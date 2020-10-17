@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=238179f228ad1dcc201f832e9e25eced"></script>
+
+<style>
+#map{
+	width:100%;
+	height:800px;
+	border:2px solid blue;
+}
+</style>
+<script>
+var map = null;
+
+function panTo(lat, lng) {
+    var moveLatLon = new kakao.maps.LatLng(lat, lng);
+    map.panTo(moveLatLon);            
+}   
+
+function mapDislapy(){
+	var container = document.getElementById('map');
+	var options = {
+		center: new kakao.maps.LatLng(37.549530, 126.989045),
+		level: 8
+	};
+	map = new kakao.maps.Map(container, options);
+};
+
+
+function getGeoS(){	
+	var arr = null;
+	$.ajax({
+		url:'getgeo',
+		async:false, //데이터 다 갖고온 후에 마커 표시
+		success:function(result){
+			//mapDislapy1(result);
+			arr = result;
+		},
+		error:function(){
+			alert('Error.....');
+		}
+	});
+	return arr;
+};
+
+function marker(arr){
+	$(arr).each(function(index,g){
+		console.log(g.x);
+		var marker = new kakao.maps.Marker({
+		    position: new kakao.maps.LatLng(g.x, g.y)
+		});
+		
+		marker.setMap(map);
+	});
+	/*
+	var marker = new kakao.maps.Marker({
+	    position: new kakao.maps.LatLng(37.555210, 126.974943)
+	});
+	marker.setMap(map);*/
+}
+
+$(document).ready(function(){
+	var arr = null;
+	mapDislapy();
+	$('button:eq(0)').click(function(){
+		//seoul
+		panTo(37.549530, 126.989045);
+		arr = getGeoS();
+		marker(arr);
+	});
+	$('button:eq(1)').click(function(){
+		//busan
+		panTo(35.1319943,129.0641646);
+	});
+});
+</script>
+</head>
+<body>
+<button>Seoul</button>
+<button>Busan</button>
+<div id="map"></div>
+</body>
+</html>

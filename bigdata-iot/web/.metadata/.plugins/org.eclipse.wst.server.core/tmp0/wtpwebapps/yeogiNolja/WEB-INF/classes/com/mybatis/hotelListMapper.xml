@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.HotelListDao">
+
+	<insert id="insert" parameterType="hotelList">
+		INSERT INTO HOTEL_LIST VALUES (#{hotel_id},#{name},#{addr_sd},#{addr_sgg},#{addr_emd},#{total_room},#{lon},#{lat},#{amenities},#{grade},#{hotel_img})
+	</insert>
+
+	<update id="update" parameterType="hotelList">
+		UPDATE HOTEL_LIST SET HOTEL_NAME=#{name}, TOTAL_ROOM=#{total_room} WHERE HOTEL_ID=#{hotel_id}
+	</update>
+
+	<delete id="delete" parameterType="String">
+		DELETE FROM HOTEL_LIST WHERE HOTEL_ID=#{k}
+	</delete>
+
+	<select id="select" parameterType="String" resultType="hotelList">
+		SELECT * FROM HOTEL_LIST WHERE HOTEL_ID=#{k}
+	</select>
+
+	<select id="selectall" resultType="hotelList">
+		SELECT * FROM HOTEL_LIST 
+	</select>
+
+	<select id="search" parameterType="HashMap" resultType="hotelList">
+		SELECT * FROM HOTEL_LIST WHERE
+		<include refid="findDest"></include>
+	</select>
+
+	<sql id="findDest">
+	(HOTEL_NAME LIKE '%'||#{dest}||'%')or(ADDR_SD LIKE '%'||#{dest}||'%') or(ADDR_SGG LIKE '%'||#{dest}||'%') order by ${orderBy}
+	</sql>
+
+
+	<select id="selectall_count" resultType="String">
+		SELECT COUNT(*) FROM HOTEL_LIST 
+	</select>
+
+	<insert id="insertAdminForm" parameterType="hotelList">
+		INSERT INTO HOTEL_LIST (HOTEL_ID,HOTEL_NAME,ADDR_SD,ADDR_SGG,ADDR_EMD,TOTAL_ROOM,AMENITIES,GRADE)
+		VALUES (#{hotel_id},#{name},#{addr_sd},#{addr_sgg},#{addr_emd},#{total_room},#{amenities},#{grade})	
+	</insert>
+
+	<update id="updateAdminForm" parameterType="hotelList">
+		UPDATE HOTEL_LIST SET HOTEL_NAME=#{name}, ADDR_SD=#{addr_sd}, ADDR_SGG=#{addr_sgg}, ADDR_EMD=#{addr_emd}, TOTAL_ROOM=#{total_room}, LON=#{lon}, LAT=#{lat}, AMENITIES=#{amenities}, GRADE=#{grade}, HOTEL_IMG=#{hotel_img} 
+		WHERE HOTEL_ID=#{hotel_id}
+	</update>
+</mapper>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>q5</title>
+    <style></style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        let products = null;
+        let orders = {};
+        let sum = 0;
+        $(document).ready(function (){
+            getData();
+            $('#product>div').click(function (){
+                let num = $(this).attr('id');
+                cart(Number(num));
+            });
+            $(document).on("click",'#cart_plus',function (){
+                let html = $(this).parent().html()
+                plusCart(html);
+            })
+            $(document).on("click",'#cart_minus',function (){
+                let html = $(this).parent().html()
+                minusCart(html);
+                $(this).parent().remove();
+            })
+            $('#pay').click(function (){
+                charge();
+            })
+            $('#re').click(function (){
+                location.reload();
+            })
+        })
+        // getData() function Define
+        function getData(){
+            products = [
+                // Get data of menus
+                {id:'001', name:'Burger1', price:10000, stock:10},
+                {id:'002', name:'Burger2', price:10000, stock:10},
+                {id:'003', name:'Burger3', price:10000, stock:10},
+                {id:'004', name:'Burger4', price:10000, stock:10},
+                {id:'005', name:'Burger5', price:10000, stock:10}
+            ];
+            display(products); 
+        }
+        // display() function Define
+        function display(p){
+            $(p).each(function (index, item){
+                let html = '';
+                html += '<div id="' + index + '" style="width: 150px; height: 190px; border: 3px dotted yellow; float: left;">';
+                html += '<p>' + item.name + '</p>';
+                html += '<p>' + item.stock + '</p>';
+                html += '<p>' + item.price + '</p>';
+                html += '</div>';
+                $('#product').append(html);
+            })
+        }
+        // cart() function Define
+        function cart(n){
+            sum += products[n].price;
+            let html = '';
+            html += '<p>' + products[n].name + ' ' + products[n].price;
+            html += '<button id="cart_plus">+</button>' + '<span style="display: none">' + products[n].id + '</span>' + '<button id="cart_minus">-</button>' + '</p>';
+            $('#cart').append(html);
+            $('#total').text(String(sum));
+        }
+        function plusCart(html){
+            $('#cart').append('<p>' + html + '</p>');
+            sum += Number(html.substring(html.search(" "),html.search("<")));
+            $('#total').text(String(sum));
+        }
+        function minusCart(html){
+            sum -= Number(html.substring(html.search(" "),html.search("<")));
+            $('#total').text(String(sum));
+        }
+        function charge(){            
+            $('#cart>p>span').each(function (index, item){
+            	console.log($(item).text());
+                orders[$(item).text()] = 
+                	($(item).text() in orders)? orders[$(item).text()] + 1 : 1;
+               	console.log(orders);
+            })
+            //alert(JSON.stringify(orders));
+            /*
+            var orderData = JSON.stringify(orders);
+            $.post('getdata4', orderData, function(result){
+            	return result;
+            })*/
+            
+            sendData(orders);
+            
+            $('#cart').empty();
+            $('#total').text(String(sum));
+            $('#status').text("Confirm");
+            sum = 0;
+        }
+        function sendData(d){
+        	 var jsonData = JSON.stringify(orders)
+        	$.ajax({
+        		url:'getdata4',
+        		data:{"jsonData" : jsonData},
+       		 	dataType:'json',
+        		success:function(result){
+        			viewR(result);
+        			
+        		},
+        		error:function(){
+        			alert('Error.....');
+        		}
+        	});
+        };
+        
+        function viewR(orders){
+        	console.log(orders['001']);
+        	console.log(products['id']);
+            $('#receipt').empty();
+
+        	let html = '';
+        	//html += '<div id="receipt" style="width: 150px; height: 190px; border: 3px dotted yellow; float: left;';
+        	if(orders['001'] != null){
+        		let cnt001 = orders['001'];
+        		sum += cnt001*products[0].price;
+                html += '<p>' +products[0].name+ '</p>';
+                html += '<p> cnt: ' + cnt001 + '</p>';
+        	}
+        	if(orders['002'] != null){
+        		let cnt002 = orders['002'];
+        		sum += cnt002*products[1].price;
+                html += '<p>' +products[1].name+ '</p>';
+                html += '<p> cnt: ' + orders['002'] + '</p>';
+        	}
+        	if(orders['003'] != null){
+        		let cnt003 = orders['003'];
+        		sum += cnt003*products[2].price;
+                html += '<p>' +products[2].name+ '</p>';
+                html += '<p> cnt: ' + orders['003'] + '</p>';
+        	}
+        	if(orders['004'] != null){
+        		let cnt004 = orders['004'];
+        		sum += cnt004*products[3].price;
+                html += '<p>' +products[3].name+ '</p>';
+                html += '<p> cnt: ' + orders['004'] + '</p>';
+        	}
+        	if(orders['005'] != null){
+        		let cnt005 = orders['005'];
+        		sum += cnt005*products[4].price;
+                html += '<p>' +products[4].name+ '</p>';
+                html += '<p> cnt: ' + orders['005'] + '</p>';
+        	}
+        	
+        	html += '==============================<br>';
+        	html += '<h3> Total Price: ' +sum+ '</h3>';
+        	$('#receipt').append(html);
+        	
+        }
+        
+        // stockValid() function Define
+        function stockValid(){
+
+        }
+        // chargeValid() function Define
+        function chargeValid(input){
+            $('#exchange').text((sum>input)?"Not enough money":String(input - sum));
+        }
+    </script>
+</head>
+<body>
+<h1>POS SYSTEM</h1>
+<div id="product" style="width: 800px; height: 200px; border: 2px solid blue;"></div>
+<h2>TOTAL:<span id="total"></span></h2>
+<div id="cart" style="width: 800px; height: 200px; border: 2px solid red; overflow: auto;"></div>
+<h2>CHARGE:<span id="status"></span></h2>
+<div id="charge" style="width: fit-content; height: auto; border: 2px solid orange;">
+    <button id="pay">PAY</button><button id="re">RE</button>
+</div>
+<h2>RECEIPT:</h2>
+<div id="receipt" style="width: 800px; height: auto; border: 2px solid gray;">
+</div>
+</body>
+</html>

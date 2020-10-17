@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="Edit"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="edit"/>
+			<item value="view"/>
+			<item value="$"/>
+			<item value="map"/>
+			<item value="userlist.mc"/>
+			<item value="onclick"/>
+			<item value="buttons"/>
+			<item value="amste"/>
+			<item value="amst"/>
+			<item value="userlist"/>
+			<item value="tillma"/>
+			<item value="total or"/>
+			<item value="total"/>
+			<item value="total "/>
+			<item value="total orders"/>
+		</list>
+		<list key="replacehistory">
+			<item value="admin_yn"/>
+			<item value="userDetail."/>
+			<item value="name"/>
+			<item value="room_id"/>
+			<item value=""/>
+			<item value="ReserveVO"/>
+			<item value="HOTEL_RESERVE"/>
+			<item value="RESERVE"/>
+			<item value="adults"/>
+			<item value="r"/>
+			<item value="ROOM_"/>
+			<item value="etHotelRoom_"/>
+			<item value="HotelRoom_"/>
+			<item value="public HotelRoomVO"/>
+			<item value="HOTEL_ROOM"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1265"/>
+		<item key="DIALOG_Y_ORIGIN" value="369"/>
+		<item key="DIALOG_WIDTH" value="294"/>
+		<item key="DIALOG_HEIGHT" value="408"/>
+		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+	</section>
+</section>

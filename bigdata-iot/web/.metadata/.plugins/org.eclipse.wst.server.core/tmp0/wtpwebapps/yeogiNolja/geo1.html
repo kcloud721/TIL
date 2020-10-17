@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=77051248a1682bf5a19186626f35773e"></script>
+
+<style>
+#map {
+	width: 600px;
+	height: 600px;
+	border: 2px solid blue;
+}
+</style>
+<script>
+	var map = null;
+
+	function mapDisplay() {
+		var container = document.getElementById('map');
+		var options = {
+			center : new kakao.maps.LatLng(39.031721, 125.852652),
+			level : 8
+		};
+		map = new kakao.maps.Map(container, options);
+	}
+	
+	function setCenter() {
+		var moveLatLon = new kakao.maps.LatLng(33.452613, 126.570888);
+		map.setCenter(moveLatLon);
+	}
+
+	function panTo() {
+		var moveLatLon = new kakao.maps.LatLng(34.450580, 126.574942);
+		map.panTo(moveLatLon);
+	}
+
+	function setMarker() {
+		// 마커가 표시될 위치입니다 
+		var markerPosition = new kakao.maps.LatLng(39.031721, 125.852652);
+
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+			position : markerPosition
+		});
+		
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
+	}
+	$(document).ready(function() {
+		mapDisplay();
+		setMarker();
+		$('button:eq(0)').click(function() {
+			setCenter();
+		});
+		$('button:eq(1)').click(function() {
+			panTo();
+		});
+
+	});
+</script>
+</head>
+<body>
+	<h1>지도 Test</h1>
+	<button>Click1</button>
+	<button>Click2</button>
+	<div id="map"></div>
+</body>
+</html>

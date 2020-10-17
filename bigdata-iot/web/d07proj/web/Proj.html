@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POS SYSTEM</title>
+    <style></style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=77051248a1682bf5a19186626f35773e&libraries=services"></script>
+    <script>
+    	let products = [];
+        let orders = {};
+        let sum = 0;
+        let markers = [];
+        let map = null;
+        let ps = null;
+        let infowindow = null;
+        let totalPrice = 0;
+        
+        $(document).ready(function (){
+            getData();
+            mapDisplay();
+            $(document).on("click",'#product>div',function (){
+                let num = $(this).attr('id');
+                if(Number($(this).children('.stock').text()) > 0){
+                	cart(Number(num));
+                };
+            });
+            $(document).on("click",'#cart_plus',function (){
+                let html = $(this).parent().html()
+                plusCart(html);
+            })
+            $(document).on("click",'#cart_minus',function (){
+                let html = $(this).parent().html()
+                minusCart(html);
+                $(this).parent().remove();
+            })
+            $('#pay').click(function (){
+                charge();
+                //location.reload(true);
+            })
+            $('#reset').click(function (){
+                location.reload(true);
+            })
+            $('#admin').click(function (){
+                location.href = 'admin.html';
+            })
+        })
+        
+        function resetV(){
+        	sum = 0;
+        	totalPrice = 0;
+        	
+        }
+        
+        function getData(){
+            $.ajax({
+				url:'getMenu',
+				async:false,
+				success:function(datas){
+					products = datas;
+					display(products);
+				},
+				error:function(){
+					alert('GET Error...');
+				}
+			});
+        }
+        function sendData(datas){
+        	$.ajax({
+        		url:'getMenu',
+        		data:{"order":datas},
+        		error:function(){
+        			alert('SEND Error...');
+        		}
+        	});
+        }
+        function display(p){
+        	$('#product').empty();
+            $(p).each(function (index, item){
+                let html = '';
+                html += '<div id="' + index + '" style="width: 150px; height: 190px; border: 3px dotted yellow; float: left;">';
+                html += '<p class="name">' + item.name + '</p>';
+                html += '<p class="stock">' + item.stock + '</p>';
+                html += '<p class="price">' + item.price + '</p>';
+                html += '</div>';
+                $('#product').append(html);
+            })
+        }
+        function cart(n){
+            sum += products[n].price;
+            let html = '';
+            html += '<p>' + products[n].name + ' ' + products[n].price;
+            html += '<button id="cart_plus">+</button>' + '<span style="display: none">' + products[n].id + '</span>' + '<button id="cart_minus">-</button>' + '</p>';
+            $('#cart').append(html);
+            $('#total').text(String(sum));
+        }    
+        function plusCart(html){
+            $('#cart').append('<p>' + html + '</p>');
+            sum += Number(html.substring(html.search(" "),html.search("<")));
+            $('#total').text(String(sum));
+        }
+        function minusCart(html){
+            sum -= Number(html.substring(html.search(" "),html.search("<")));
+            $('#total').text(String(sum));
+        }
+        function charge(){
+            $('#cart>p>span').each(function (index, item){
+                orders[$(item).text()] = ($(item).text() in orders)? orders[$(item).text()] + 1 : 1;
+            })
+            for (let key in orders){
+            	sendData(String(key) + "&" + String(orders[key]));
+            }
+            
+         // ==============
+        	$('#receipt').empty();
+            let html = '';
+         
+            if(orders['001'] != null){
+	            html += '<p>'+ products[0].name +' '+ orders['001'] + '개 ' + orders['001']*products[0].price +'원'; 
+	        	totalPrice += orders['001']*products[0].price;    
+            }
+            if(orders['002'] != null){
+	            html += '<p>'+ products[1].name +' '+ orders['002'] + '개 ' + orders['002']*products[1].price +'원'; 
+	        	totalPrice += orders['002']*products[1].price;        
+            }
+            if(orders['003'] != null){
+	            html += '<p>'+ products[2].name +' '+ orders['003'] + '개 ' + orders['003']*products[2].price +'원'; 
+	        	totalPrice += orders['003']*products[2].price;        
+            }
+            if(orders['004'] != null){
+	            html += '<p>'+ products[3].name +' '+ orders['004'] + '개 ' + orders['004']*products[3].price +'원'; 
+	        	totalPrice += orders['004']*products[3].price;        
+            }
+            if(orders['005'] != null){
+	            html += '<p>'+ products[4].name +' '+ orders['005'] + '개 ' + orders['005']*products[4].price +'원'; 
+	        	totalPrice += orders['005']*products[4].price;        
+            }
+
+            html += '<p> 총 금액: '+ totalPrice +'원'; 
+            $('#receipt').append(html);
+        }
+        function mapDisplay() {
+            let mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                mapOption = {
+                    center : new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+                    level : 8
+                };
+            map = new kakao.maps.Map(mapContainer, mapOption);
+            ps = new kakao.maps.services.Places();
+            infowindow = new kakao.maps.InfoWindow({
+                zIndex : 1
+            });
+            ps.keywordSearch('맥도날드', placesSearchCB);
+        }
+        function placesSearchCB(data, status, pagination) {
+            if (status === kakao.maps.services.Status.OK) {
+                displayPlaces(data);
+                displayPagination(pagination);
+            } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+                alert('검색 결과가 존재하지 않습니다.');
+                return;
+            } else if (status === kakao.maps.services.Status.ERROR) {
+                alert('검색 결과 중 오류가 발생했습니다.');
+                return;
+            }
+        }
+        function displayPlaces(places) {
+            let listEl = document.getElementById('placesList'), menuEl = document
+                .getElementById('menu_wrap'), fragment = document
+                .createDocumentFragment(), bounds = new kakao.maps.LatLngBounds(), listStr = '';
+            $(listEl).each(function() {
+                console.log(lsitEl);
+            })
+            removeMarker();
+            for (let i = 0; i < places.length; i++) {
+                let placePosition = new kakao.maps.LatLng(places[i].y, places[i].x), marker = addMarker(
+                    placePosition, i), itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
+                bounds.extend(placePosition);
+                (function(marker, title) {
+                    kakao.maps.event.addListener(marker, 'mouseover', function() {
+                        displayInfowindow(marker, title);
+                    });
+                    kakao.maps.event.addListener(marker, 'mouseout', function() {
+                        infowindow.close();
+                    });
+                    itemEl.onmouseover = function() {
+                        displayInfowindow(marker, title);
+                    };
+                    itemEl.onmouseout = function() {
+                        infowindow.close();
+                    };
+                })(marker, places[i].place_name);
+                fragment.appendChild(itemEl);
+            }
+            listEl.appendChild(fragment);
+            menuEl.scrollTop = 0;
+            map.setBounds(bounds);
+        }
+        function getListItem(index, places) {
+            let el = document.createElement('li'), itemStr = '<span class="markerbg marker_'
+                + (index + 1)
+                + '"></span>'
+                + '<div class="info">'
+                + '   <h5>'
+                + places.place_name + '</h5>';
+            if (places.road_address_name) {
+                itemStr += '    <span>' + places.road_address_name + '</span>'
+                    + '   <span class="jibun gray">' + places.address_name
+                    + '</span>';
+            } else {
+                itemStr += '    <span>' + places.address_name + '</span>';
+            }
+            itemStr += '  <span class="tel">' + places.phone + '</span>' + '</div>';
+            el.innerHTML = itemStr;
+            el.className = 'item';
+            return el;
+        }
+        function addMarker(position, idx, title) {
+            var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+                imageSize = new kakao.maps.Size(36, 37), // 마커 이미지의 크기
+                imgOptions = {
+                    spriteSize : new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
+                    spriteOrigin : new kakao.maps.Point(0, (idx * 46) + 10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+                    offset : new kakao.maps.Point(13, 37)
+                }, markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
+                imgOptions), marker = new kakao.maps.Marker({
+                    position : position, // 마커의 위치
+                    image : markerImage
+                });
+            marker.setMap(map); // 지도 위에 마커를 표출합니다
+            markers.push(marker); // 배열에 생성된 마커를 추가합니다
+            return marker;
+        }
+        function removeMarker() {
+            for (let i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+            markers = [];
+        }
+        function displayPagination(pagination) {
+            let paginationEl = document.getElementById('pagination'), fragment = document
+                .createDocumentFragment(), i;
+            while (paginationEl.hasChildNodes()) {
+                paginationEl.removeChild(paginationEl.lastChild);
+            }
+
+            for (i = 1; i <= pagination.last; i++) {
+                let el = document.createElement('a');
+                el.href = "#";
+                el.innerHTML = i;
+                if (i === pagination.current) {
+                    el.className = 'on';
+                } else {
+                    el.onclick = (function(i) {
+                        return function() {
+                            pagination.gotoPage(i);
+                        }
+                    })(i);
+                }
+                fragment.appendChild(el);
+            }
+            paginationEl.appendChild(fragment);
+        }
+        function displayInfowindow(marker, title) {
+            let content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
+            infowindow.setContent(content);
+            infowindow.open(map, marker);
+        }
+        function removeAllChildNods(el) {
+            while (el.hasChildNodes()) {
+                el.removeChild(el.lastChild);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>POS SYSTEM </h1>
+    <div id="product" style="width: 800px; height: 200px; border: 2px solid blue;"></div>
+    <h2>TOTAL:<span id="total"></span></h2>
+    <div id="cart" style="width: 800px; height: 200px; border: 2px solid red; overflow: auto;"></div>
+    <h2>CHARGE:<span id="status"></span></h2>
+    <div id="charge" style="width: fit-content; height: auto; border: 2px solid orange;">
+    	<button id="pay">PAY</button>
+    	<button id="admin">ADMIN</button>
+    	<button id="reset">RESET</button>
+    </div>
+    <h2>RECEIPT:</h2>
+    <div id="receipt" style="width: fit-content; height: auto; border: 2px solid gray;"></div>
+	
+    <div id="map" style="width: 600px; height: 600px; border: 2px solid blue;"></div>
+</body>
+</html>

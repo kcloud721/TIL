@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>q5</title>
+    <style></style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        let products = null;
+        let sum = 0;
+        $(document).ready(function (){
+            getData();
+            $('#product>div').click(function (){
+                let num = $(this).attr('id');
+                cart(Number(num));
+            });
+            $('#pay').click(function (){
+                orderComplete();
+            })
+        })
+        // getData() function Define
+        function getData(){
+            products = [
+                {id:'001', name:'Burger1', price:10000, stock:10, img_src:'h1.jpg'},
+                {id:'002', name:'Burger2', price:10000, stock:10, img_src:'h2.jpg'},
+                {id:'003', name:'Burger3', price:10000, stock:10, img_src:'h3.jpg'},
+                {id:'004', name:'Burger4', price:10000, stock:10, img_src:'h4.jpg'},
+                {id:'005', name:'Burger5', price:10000, stock:10, img_src:'h5.jpg'}
+            ];
+            display(products);
+        }
+        // display() function Define
+        function display(p){
+            $(p).each(function (index, item){
+                let html = '';
+                html += '<div id="' + index + '" style="width: 150px; height: 190px; border: 3px dotted yellow; float: left;">';
+                html += '<img alt="BOX" style="width: 80px; height: 80px;" src="' + item.img_src + '">';
+                html += '<p>' + item.name + '</p>';
+                html += '<p>' + item.stock + '</p>';
+                html += '<p>' + item.price + '</p>';
+                html += '</div>';
+                $('#product').append(html);
+            })
+        }
+        // cart() function Define
+        function cart(n){
+            sum += products[n].price;
+            let html = '';
+            html += '<img alt="BOX" style="width: 30px; height: 30px;" src="' + products[n].img_src + '">';
+            html += products[n].name + ' ' + products[n].price + '<br>';
+            $('#cart').append(html);
+            $('#total').text(String(sum));
+        }
+        // exchange() function Define
+        function exchange(){
+            let input = $('input[type="number"]').val();
+            stockValid();
+            chargeValid(input);
+        }
+        // stockValid() function Define
+        function stockValid(){
+
+        }
+        // chargeValid() function Define
+        function chargeValid(input){
+            $('#exchange').text((sum>input)?"Not enough money":String(input - sum));
+        }
+        // orderCompelte() function Define
+        function orderComplete(input){
+        	var test = $('#basket').html();
+        	sendData(test);
+        }
+        // sendData() function Define
+        function sendData(d){
+        	$.ajax({
+        		url:'getdata4',
+        		data:{cmd:d},
+        		success:function(result){
+        			viewRecpt(result);
+        		},
+        		error:function(){
+        			alert('Error.....');
+        		}
+        	});
+        };
+        // viewRecpt()
+        function viewRecpt(orders){
+        	$('h3:eq(0)').html(orders);
+        }
+        
+    </script>
+</head>
+<body>
+<h1>POS SYSTEM</h1>
+<div id="product" style="width: 800px; height: 200px; border: 2px solid blue;"></div>
+<h2>TOTAL:<span id="total"></span></h2>
+<div id="cart" style="width: 800px; height: 200px; border: 2px solid red; overflow: auto;"></div>
+<h2>CHARGE:<span id="exchange"></span></h2>
+<div id="charge" style="width: 800px; height: 200px; border: 2px solid orange;">
+    <label><input type="number" placeholder="Input money" step="10000" style="width: 99%; height: 97%;"></label>
+    <button id="pay">PAY</button>
+    <h3></h3>
+</div>
+
+</body>
+</html>

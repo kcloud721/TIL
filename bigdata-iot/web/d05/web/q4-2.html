@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+#d0{
+	width:400px;
+	border:2px solid gray;
+}
+#d1{
+	width: 150px;
+	border:2px solid gray;
+}
+#d2{
+	width: 150px;
+	border:2px solid gray;
+}
+</style>
+<script>
+$(document).ready(function(){
+	var total = 0;
+	var item = [
+		{id:'id01',name:'빵',price:10000},
+		{id:'id02',name:'사과',price:20000},
+		{id:'id03',name:'가지',price:30000},
+		{id:'id04',name:'오징어',price:40000},
+		{id:'id05',name:'맛동산',price:50000},
+		{id:'id01',name:'구구콘',price:60000}
+	];	
+	var txt = 'HTML Content..';
+	
+	$('button').eq(0).click(function(){
+		total += item[0].price;
+		$('#d1').append(item[0].name +' '+ item[0].price +'<br>');
+		$('#d2').empty();
+		$('#d2').append('합계: '+total);
+	});
+	$('button').eq(1).click(function(){
+		total += item[1].price;
+		$('#d1').append(item[1].name +' '+ item[1].price +'<br>');
+		$('#d2').empty();
+		$('#d2').append('합계: '+total+'');
+	});
+	$('button').eq(2).click(function(){
+		total += item[2].price;
+		$('#d1').append(item[2].name +' '+ item[2].price +'<br>');
+		$('#d2').empty();
+		$('#d2').append('합계: '+total+'');
+	});
+	$('button').eq(3).click(function(){
+		total += item[3].price;
+		$('#d1').append(item[3].name +' '+ item[3].price +'<br>');
+		$('#d2').empty();
+		$('#d2').append('합계: '+total+'');
+	});
+	$('button').eq(4).click(function(){
+		total += item[4].price;
+		$('#d1').append(item[4].name +' '+ item[4].price +'<br>');
+		$('#d2').empty();
+		$('#d2').append('합계: '+total+'');
+	});
+	$('button').eq(5).click(function(){
+		total += item[5].price;
+		$('#d1').append(item[5].name +' '+ item[5].price +'<br>');
+		$('#d2').empty();
+		$('#d2').append('합계: '+total+'');
+	});
+	
+});
+</script>
+</head>
+<body>
+<div id="d0">
+	<h2>상품선택</h2>
+	<table>
+		<tr>
+			<td><button>빵 10000</button></td>
+			<td><button>사과 20000</button></td>
+			<td><button>가지 30000</button></td>
+		</tr>
+		<tr>
+			<td><button>오징어 40000</button></td>
+			<td><button>맛동산 50000</button></td>
+			<td><button>구구콘 60000</button></td>
+		</tr>
+		<tr>
+			<td rowspan=2><div id="d1"></div></td>
+			<td><div id="d2"></div></td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>
+
+
+
+
+

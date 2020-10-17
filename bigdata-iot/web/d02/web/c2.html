@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/c1.css">
+<style>
+
+	h1{
+		color: white;
+		background: blue;
+	}
+	.c1{
+		color: white;
+		background: green;
+	}
+	#login_form > input:hover{ /* []: attribue 비교하여 특정지음 : 일일이 id 지정하면 ㅈㄴ 복잡해질수잇으니가*/
+		background: red;
+		color: black;
+	} 
+	#login_form > a{ /* []: attribue 비교하여 특정지음 : 일일이 id 지정하면 ㅈㄴ 복잡해질수잇으니가*/
+		color: red;
+	} 
+	#hh1:hover{
+		color: white;
+		background: gray;
+	}
+
+</style>
+</head>
+<body>
+<form id="login_form">
+	<a href="h1.html">click</a><br>
+	ID <input type="text" name="id"><br>
+	PW <input type="password" name="pw" id="pw"><br>
+	<input type="submit" value="로그인"><br>
+</form>
+<h1 id="hh1">Header </h1>
+<h1 class="c1">Header </h1>
+<h1>Header </h1>
+<p class="c1">paragraph </p>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<style>
+div{
+	width: 100%;
+	border: 2px solid green;
+}
+</style>
+<script>
+function display(datas){
+	$(datas).each(function(index,user){
+		var result='';
+		result += '<h3>';
+		result += user.id+' '+user.pwd+' '+user.name;
+		result += '</h3>';
+		
+		$('#basket').append(result);
+	})
+};
+
+function getData(){	
+	$.ajax({
+		url:'getdata32',
+		success:function(result){
+			display(result);
+		},
+		error:function(){
+			alert('Error.....');
+		}
+	});
+};
+
+function display2(orders){
+	$('h1:eq(1)').html(orders);
+}
+
+function sendData(d){
+	$.ajax({
+		url:'getdata4',
+		data:{cmd:d},
+		success:function(result){
+			display2(result);
+		},
+		error:function(){
+			alert('Error.....');
+		}
+	});
+};
+
+function orderComplete(){
+	var id = $('#basket').val();
+	var test = $('#basket').html();
+	sendData(test);
+	/*
+	$('#basket').attr({
+		'action':'getdata4',
+		'method':'post'
+	}).submit();*/
+	
+	/*
+	$.ajax({
+		url:'getdata4',
+		success:function(result){
+			display2(result);
+		},
+		error:function(){
+			alert('Error.....');
+		}
+	}); */
+}
+
+$(document).ready(function(){
+	$('#get').click(function(){
+		getData();
+	});
+	$('#pay').click(function (){
+        orderComplete();
+    })
+});
+</script>
+</head>
+<body>
+<h1>ajax TEST</h1>
+<button id="get">Click</button>
+<div id="basket"></div>
+<button id="pay">PAY</button>
+<h1></h1>
+<h3></h3>
+</body>
+</html>

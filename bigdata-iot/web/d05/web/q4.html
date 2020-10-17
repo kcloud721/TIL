@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+div#d1{
+	width:400px;
+	border:2px solid red;
+}
+</style>
+<script>
+$(document).ready(function(){
+	var total = 0;
+	var txt = 'HTML content...';
+	$('button').eq(0).click(function(){
+		total += 10000;
+		$('#d1').append('<h1> 빵 10000 </h1>');
+		$('#d2').append('합계 '+total);
+
+	});
+};
+
+</script>
+</head>
+<body>
+<table>
+	<tr> 상품선택 </tr>
+	<tr>
+		<td><button>Append</button></td> 
+		<td><button>사과</button></td> 
+		<td><button>30000</button></td>
+	</tr>
+	<tr>
+		<td><button>10000</button></td> 
+		<td><button>40000</button></td> 
+		<td><button>50000</button></td>
+	</tr>
+</table>
+<h1>jQuery Table Test</h1>
+
+<div id="d1"></div>
+<div id="d2"></div>
+
+</body>
+</html>
+
+
+
+

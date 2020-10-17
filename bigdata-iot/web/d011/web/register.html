@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Register Page</title>
+<link href="css/main.css" rel="stylesheet">
+<style>
+div{
+	border-collapse: collapse;
+}
+</style>
+</head>
+<body>
+<h1>　Register Page</h1>
+<div>
+<form action="register01" method="GET">
+	<fieldset>
+	<legend>회원가입 화면</legend>
+	<b>ID</b> <input type="text" name="id"><br>
+	<b>PW</b> <input type="password" name="pw" id="pw"><br>
+	<br>
+	<b>Gender</b><br>
+	<input type="radio" name="r1" value="MALE">남성<br>
+	<input type="radio" name="r1" value="FEMALE">여성<br>
+	<br>
+	<b>Available OA</b><br>
+	<input type="checkbox" name="c1" value="Word"> Word<br>
+	<input type="checkbox" name="c1" value="Excel"> Excel<br>	
+	<input type="checkbox" name="c1" value="PowerPoint"> PowerPoint<br>
+	<br>
+	
+	<!-- 
+	자기소개<br>
+	<textarea rows="10" cols="50" name="tt"></textarea>
+	<br>
+	Select
+	<select name="ss">
+		<option value="k1">K1</option>
+		<option value="k2">K2</option>
+		<option value="k3">K3</option>
+	</select>
+	
+	<br><br>-->
+	<input type="submit" value="가입완료">
+	<br>
+	</fieldset>
+</form>
+</div>
+</body>
+</html>
