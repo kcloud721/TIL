@@ -1,44 +1,18 @@
 # httpConnection
 
-project : p500
+project : p5002
 
-
+`Android_Manifest.xml` 꼭 체크 ㅡㅡ
 
 # JSON Array
 
-project : p500
+project : p5002
 
 
 
+# Workshop
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+project : p533
 
 1. 로그인 후 다음 페이지 이동
 2. 다음 페이지에서는 영화정보를 리스트로 출력
@@ -46,7 +20,7 @@ project : p500
 
 
 
-json 구조
+## json 구조
 
 ```json
 {

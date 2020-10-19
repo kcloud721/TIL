@@ -12,6 +12,6 @@
 | Workshop                      | p245     |
 | 인텐트 ACTION_CALL 등         | p251     |
 |                               |          |
-| httpConnection                | p500     |
-| JSON Array                    | p500     |
+| httpConnection                | p5002    |
+| JSON Array                    | p5002    |
 
