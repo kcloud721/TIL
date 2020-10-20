@@ -24,6 +24,7 @@ public class SecondActivity extends AppCompatActivity {
     ListView listView;
     LinearLayout container;
     ArrayList<Boxs> list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,19 +74,22 @@ public class SecondActivity extends AppCompatActivity {
                 jObject = new JSONObject(s);
 
                 // 첫번째 JSONObject를 가져와서 key-value를 읽습니다.
-                JSONObject post1Object = jObject.getJSONObject("boxOfficeResult");
-                System.out.println(post1Object.toString());
+                JSONObject object1 = jObject.getJSONObject("boxOfficeResult");
+                System.out.println(object1.toString());
 
                 // 배열을 가져옵니다.
-                JSONArray jArray = jObject.getJSONArray("dailyBoxOfficeList");
+                JSONArray jArray = object1.getJSONArray("dailyBoxOfficeList");
 
-// 배열의 모든 아이템을 출력합니다.
+                // 배열의 모든 아이템을 출력합니다.
                 for (int i = 0; i < jArray.length(); i++) {
                     JSONObject obj = jArray.getJSONObject(i);
                     String title = obj.getString("movieNm");
-                    System.out.println("title(" + i + "): " + title);
-
+                    int rank = obj.getInt("rank");
+                    System.out.println("title(" + rank + "): " + title);
+                    Boxs boxs = new Boxs(rank, title);
+                    list.add(boxs);
                 }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -116,12 +120,25 @@ public class SecondActivity extends AppCompatActivity {
             View itemView = null;
             LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             itemView = inflater.inflate(R.layout.boxs, container, true);
+
             TextView mv_rank = itemView.findViewById(R.id.list_rank);
             TextView mv_movieNm = itemView.findViewById(R.id.list_name);
-            mv_rank.setText(list.get(position).getRank());
-            mv_movieNm.setText(list.get(position).getMovieNm());
 
-            return null;
+            mv_movieNm.setOnClickListener((View.OnClickListener) this);
+
+            mv_movieNm.setText(list.get(position).getMovieNm());
+            mv_rank.setText(list.get(position).getRank()+"");
+            return itemView;
         }
+
+    }
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.list_name:
+                System.out.println("AAAASDFAASDFASDFASD");
+                break;
+        }
+
     }
 }

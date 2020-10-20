@@ -45,7 +45,7 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        String url = "http://192.168.0.70/android/items.jsp";
+        String url = "http://192.168.1.22/android/items.jsp";
         ItemAsync itemAsync = new ItemAsync();
         itemAsync.execute(url);
     }
@@ -135,7 +135,7 @@ public class SecondActivity extends AppCompatActivity {
             String img = list.get(position).getImg();
 
 
-            final String url = "http://192.168.0.70/android/img/";
+            final String url = "http://192.168.1.22/android/img/";
             GetImg t1 = new GetImg(img, url, imageView);
             t1.start();
             final ImageView imageView2 = itemView.findViewById(R.id.imageView2);

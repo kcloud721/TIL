@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="#FBE2E2"
         android:orientation="horizontal">
 
@@ -45,7 +45,7 @@
             android:id="@+id/fragment"
             android:name="com.example.p287.Fragment1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 </LinearLayout>

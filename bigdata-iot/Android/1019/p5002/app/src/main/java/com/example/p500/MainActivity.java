@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public void ck(View v) {
         String id = tx_id.getText().toString();
         String pwd = tx_pwd.getText().toString();
-        String url = "http://192.168.0.70/android/login.jsp";
+        String url = "http://192.168.1.22/android/login.jsp";
         url += "?id=" + id + "&pwd=" + pwd;
         httpAsync = new HttpAsync();
         httpAsync.execute(url);
