@@ -2,8 +2,10 @@ package com.example.p287;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.view.View;
 
@@ -26,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
 //        actionBar.setLogo(R.drawable.d1);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
 //        actionBar.hide();
+
+        String [] permission = {
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+        };
+        ActivityCompat.requestPermissions(this,
+                permission, 101);
     }
 
 
