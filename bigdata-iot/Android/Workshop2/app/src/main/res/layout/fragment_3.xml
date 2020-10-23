@@ -34,21 +34,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="위잉위잉"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="인생"
-            android:textSize="18sp" />
+            android:text="자체알림"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="시발~~~"
-            android:textSize="18sp" />
+            android:text="서버푸쉬"
+            android:textSize="14sp" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
