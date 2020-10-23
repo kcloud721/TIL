@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         fragment1 = new Fragment1(this);    // fragment에 현재 메인액티비티 전달
         fragment2 = new Fragment2();
-        fragment3 = new Fragment3();
+        fragment3 = new Fragment3(this);
         actionBar = getSupportActionBar();
         actionBar.hide();
         fragmentManager = getSupportFragmentManager();
