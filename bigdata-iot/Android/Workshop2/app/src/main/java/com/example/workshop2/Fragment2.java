@@ -1,7 +1,10 @@
 package com.example.workshop2;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
@@ -27,6 +30,7 @@ public class Fragment2 extends Fragment {
     LocationManager locationManager;
     SupportMapFragment supportMapFragment;
     MapView gmap;
+    GoogleMap gm;
 
     public Fragment2() {
 
@@ -45,11 +49,24 @@ public class Fragment2 extends Fragment {
         gmap.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
-                LatLng latlng = new LatLng(34.1742, -118.4580);
-//                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//                    return;
-//                }
-                // googleMap.setMyLocationEnabled(true);
+                LatLng latlng = new LatLng(37.543571, 126.905226);
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+
+                // 권한 획득 후 매니저 실행
+                MyLocation myLocation = new MyLocation();
+                locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+                locationManager.requestLocationUpdates(
+                        LocationManager.GPS_PROVIDER,
+                        1,
+                        0,
+                        myLocation
+                );
+
+                // 내 위치 파랑색 표시
+                googleMap.setMyLocationEnabled(true);
+                // 마커 표시
                 googleMap.addMarker(
                         new MarkerOptions().position(latlng).
                                 title("공항").snippet("xxx")
@@ -59,5 +76,13 @@ public class Fragment2 extends Fragment {
         });
 
         return v;
+    }
+
+    class MyLocation implements LocationListener {
+        @Override
+        public void onLocationChanged(@NonNull Location location) {
+            double lat = location.getLatitude();
+            double lon = location.getLongitude();
+        }
     }
 }

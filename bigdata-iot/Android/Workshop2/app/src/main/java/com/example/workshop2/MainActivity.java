@@ -3,8 +3,10 @@ package com.example.workshop2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -22,6 +24,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        String [] permission = {
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+        };
+        ActivityCompat.requestPermissions(this,
+                permission, 101);
 
         fragment1 = new Fragment1(this);    // fragment에 현재 메인액티비티 전달
         fragment2 = new Fragment2();
