@@ -1,5 +1,0 @@
-INDEX VERSION 1.131
-/Users/jh/NAVER Cloud/web/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3783542597.index
-/webDispatcher/src
-/Users/jh/NAVER Cloud/web/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1984522326.index
-/webDispatcher/src
