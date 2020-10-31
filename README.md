@@ -1,5 +1,7 @@
 # Today I Learned
 
+> 나는 매일 성장해! 🌱
+
 ![8](md-images/8.jpg)
 
 ## 교육 : [빅데이터를 활용한 IoT 시스템 개발](https://github.com/kcloud721/TIL/tree/master/bigdata-iot)
