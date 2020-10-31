@@ -18,3 +18,8 @@
 
 * [백준](https://github.com/kcloud721/TIL/tree/master/algorithms/baekjoon)
 * [프로그래머스](https://github.com/kcloud721/TIL/tree/master/algorithms/programmers)
+
+## others
+
+* [Git](https://github.com/kcloud721/TIL/tree/master/others/git)
+* [Markdown](https://github.com/kcloud721/TIL/tree/master/others/markdown)
