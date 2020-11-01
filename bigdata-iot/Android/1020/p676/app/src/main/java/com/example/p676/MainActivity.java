@@ -107,6 +107,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        gmap.setMyLocationEnabled(false);
+//        gmap.setMyLocationEnabled(false);
     }
 }

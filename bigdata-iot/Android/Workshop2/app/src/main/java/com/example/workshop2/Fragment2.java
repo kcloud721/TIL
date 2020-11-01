@@ -69,7 +69,7 @@ public class Fragment2 extends Fragment {
                 // 마커 표시
                 googleMap.addMarker(
                         new MarkerOptions().position(latlng).
-                                title("공항").snippet("xxx")
+                                title("You're here!").snippet("37.xxxx, 127.xxxx")
                 );
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng,10));
             }

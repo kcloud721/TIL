@@ -132,13 +132,12 @@ public class SecondActivity extends AppCompatActivity {
         }
 
     }
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.list_name:
-                System.out.println("AAAASDFAASDFASDFASD");
-                break;
-        }
-
-    }
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()){
+//            case R.id.list_name:
+//                System.out.println("AAAASDFAASDFASDFASD");
+//                break;
+//        }
+//    }
 }

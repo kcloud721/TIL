@@ -34,4 +34,6 @@
 | 진동, 알림(Notification)                                     | 1021   |p701|
 | Firebase 를 통한 알림 수신 : Web 서버와 연동<br />수신된 메시지를 MainActivity에서 처리 (토스트 메시지) | 1021   |p711|
 | Firebase 에서 메시지를 수신하면<br />알림팝업, 진동발생      | 1021   |p712|
+|  |  ||
+| Eclipse Console과 TCP/IP 소켓 통신 (채팅)<br>Eclipse Project > network | TCPIP |TCPIP|
 

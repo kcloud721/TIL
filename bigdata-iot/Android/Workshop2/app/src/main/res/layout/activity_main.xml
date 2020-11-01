@@ -17,8 +17,21 @@
             android:id="@+id/innerContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#009688"
-            android:orientation="horizontal"></LinearLayout>
+            android:background="#F5EFFF"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="197dp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Workshop Main"
+                android:textAlignment="center"
+                android:textSize="36sp" />
+        </LinearLayout>
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
