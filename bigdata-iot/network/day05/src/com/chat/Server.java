@@ -80,8 +80,7 @@ public class Server {
 					}else if(msg.getMsg().equals("1")) {
 						String ip = 
 						socket.getInetAddress().toString();
-						ArrayList<String> ips = 
-								new ArrayList<>();
+						ArrayList<String> ips = new ArrayList<>();
 						ips.add(ip);
 						msg.setIps(ips);
 						
@@ -95,9 +94,7 @@ public class Server {
 						// 서버의 접속자 ip들
 						msg.setMaps(hm);
 					}
-					System.out.println(
-							msg.getId()+msg.getMsg()
-							);
+					System.out.println(msg.getId()+msg.getMsg());
 					sendMsg(msg);
 				} catch (Exception e) {
 					maps.remove(socket.getInetAddress().toString());
