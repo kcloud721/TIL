@@ -5,39 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity" >
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tx_list"
         android:layout_width="match_parent"
         android:layout_height="144dp"
         android:text="list" />
 
-    <TextView
-        android:id="@+id/textView2"
+    <EditText
+        android:id="@+id/et_ip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F3D7D7"
-        android:hint="input msg" />
+        android:ems="10"
+        android:hint="input ip"
+        android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/textView3"
+    <EditText
+        android:id="@+id/et_msg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#D1EFF3"
-        android:hint="Target" />
+        android:ems="10"
+        android:hint="input msg"
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="clickBt"
         android:text="Button" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tx_msg"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:background="#F3DED7"
+        android:background="#FF9800"
         android:hint="msg" />
-
 </LinearLayout>
