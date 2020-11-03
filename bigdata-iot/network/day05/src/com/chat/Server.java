@@ -57,7 +57,7 @@ public class Server {
 		ObjectOutputStream oo;
 		oo = new ObjectOutputStream(socket.getOutputStream());
 		maps.put(socket.getInetAddress().toString(), oo);
-		System.out.println("�����ڼ�:"+maps.size());
+		System.out.println("접속자 수:"+maps.size());
 	}
 	
 	class Receiver extends Thread{
