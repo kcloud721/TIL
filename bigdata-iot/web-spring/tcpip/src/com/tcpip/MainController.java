@@ -17,7 +17,7 @@ public class MainController {
 	Client client;
 	
 	public MainController() {
-		client = new Client("192.168.0.6",5555,"[KKKK]");
+		client = new Client("13.124.204.170",5555,"[KKKK]");
 		try {
 			client.connect();
 		} catch (IOException e) {
@@ -34,7 +34,7 @@ public class MainController {
 	@RequestMapping("/iot.mc")
 	public void iot(HttpServletResponse res) throws IOException {		// 화면이동 없으므로  void
 		System.out.println("IoT Send Start...");
-		client.sendTarget("/192.168.0.6", "100");
+		client.sendTarget("/13.124.204.170", "100");
 		PrintWriter out = res.getWriter();
 		out.print("ok");
 		out.close();
