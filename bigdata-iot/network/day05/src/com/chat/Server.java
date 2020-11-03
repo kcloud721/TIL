@@ -57,7 +57,7 @@ public class Server {
 		ObjectOutputStream oo;
 		oo = new ObjectOutputStream(socket.getOutputStream());
 		maps.put(socket.getInetAddress().toString(), oo);
-		System.out.println("Á¢¼ÓÀÚ¼ö:"+maps.size());
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ú¼ï¿½:"+maps.size());
 	}
 	
 	class Receiver extends Thread{
@@ -90,8 +90,8 @@ public class Server {
 						for(String k:keys) {
 							hm.put(k, null);
 						}
-						// 1À» º¸³½ client
-						// ¼­¹öÀÇ Á¢¼ÓÀÚ ipµé
+						// // 1ì„ ë³´ë‚¸ client
+						// ì„œë²„ì˜ ì ‘ì†ì ipë“¤
 						msg.setMaps(hm);
 					}
 					System.out.println(msg.getId()+msg.getMsg());
@@ -99,7 +99,7 @@ public class Server {
 				} catch (Exception e) {
 					maps.remove(socket.getInetAddress().toString());
 					System.out.println(socket.getInetAddress()+".. Exited");
-					System.out.println("Á¢¼ÓÀÚ¼ö:"+maps.size());
+					System.out.println("ì ‘ì†ììˆ˜:"+maps.size());
 					break;
 				} 
 			} // end while
