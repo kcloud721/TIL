@@ -70,6 +70,36 @@ class 에 extends Thread 넣어주고 오른버튼 Source > Override Methods > r
 
 
 
+## 우선순위 부여: setPriority
+
+setPriotiry(int 1~10)
+
+default 값은 5
+
+```java
+public static void main(String[] args) {
+		Thread t1 = new Thread(new Th("T1"));
+		t1.start();
+		t1.setPriority(10);
+		Thread t2 = new Thread(new Th("T2"));
+		t2.start();
+		t1.setPriority(1);
+	}
+```
+
+우선 순위가 높은 T1 연산이 먼저 완료되었음을 확인
+
+```java
+T1: 100
+T2: 100
+```
+
+
+
+
+
+
+
 ## 쓰레드의 동기화
 
 p537

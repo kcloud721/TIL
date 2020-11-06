@@ -34,8 +34,8 @@ class Th extends Thread{
 }
 
 public class Test {
-	Th th = new Th();
 	public static void main(String[] args) {
+		Th th = new Th();
 		Scanner sc = new Scanner(System.in);
 		while(true) {
 			System.out.println("Input cmd");

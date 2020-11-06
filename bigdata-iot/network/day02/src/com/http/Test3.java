@@ -32,9 +32,7 @@ public class Test3 {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		}
-
-		
+		}		
 	}
 
 }
