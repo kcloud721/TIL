@@ -1,28 +1,39 @@
 package websocket;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Set;
+
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
+import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @ServerEndpoint("/websocket")
 public class WebsocketBasic {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+//    static HashMap<String, Session> messageUserList = new HashMap<String, Session>();
+	
 	@OnOpen
 	public void handleOpen() {
 		System.out.println("client is now connected...");
 	}
 	
-	// WebSocketÀ¸·Î ¸Ş½ÃÁö°¡ ¿À¸é ¿äÃ»µÇ´Â ÇÔ¼ö
+	// WebSocketìœ¼ë¡œ ë©”ì‹œì§€ê°€ ì˜¤ë©´ ìš”ì²­ë˜ëŠ” í•¨ìˆ˜
 	@OnMessage
 	public String handleMessage(String message) {
-		// ¸Ş½ÃÁö ³»¿ëÀ» ÄÜ¼Ö¿¡ Ãâ·ÂÇÑ´Ù.
-		System.out.println("receive from client : " + message);
-		// ¿¡ÄÚ ¸Ş½ÃÁö¸¦ ÀÛ¼ºÇÑ´Ù.
-		String replymessage = "echo " + message;
-		// ¿¡ÄÚ ¸Ş½ÃÁö¸¦ ÄÜ¼Ö¿¡ Ãâ·ÂÇÑ´Ù.
-		System.out.println("send to client : " + replymessage);
-		// ¿¡ÄÚ ¸Ş½ÃÁö¸¦ ºê¶ó¿ìÀú¿¡ º¸³½´Ù.
+		// ë©”ì‹œì§€ ë‚´ìš©ì„ ì½˜ì†”ì— ì¶œë ¥í•œë‹¤.
+		System.out.println("ë³´ë‚´ëŠ” ë©”ì‹œì§€ : " + message);
+		// ì—ì½” ë©”ì‹œì§€ë¥¼ ì‘ì„±í•œë‹¤.
+		String replymessage = "RETURN: " + message;
+		// ì—ì½” ë©”ì‹œì§€ë¥¼ ì½˜ì†”ì— ì¶œë ¥í•œë‹¤.
+		System.out.println("ë°›ì€ ë©”ì‹œì§€ : " + replymessage);
+		// ì—ì½” ë©”ì‹œì§€ë¥¼ ë¸Œë¼ìš°ì €ì— ë³´ë‚¸ë‹¤.
 		return replymessage;
 		}
 	
@@ -35,4 +46,20 @@ public class WebsocketBasic {
 	public void handleError(Throwable t) {
 		t.printStackTrace();
 	}
+	
+	
+//	private void broadCast(String text){
+//        logger.info("ì „ë‹¬ ëŒ€ìƒ : "+messageUserList.size());
+//        Set<String>keys =  messageUserList.keySet();
+//        try {            
+//            for(String key : keys) {
+//                logger.info("key : "+key);
+//                Session session = messageUserList.get(key);    
+//                session.getBasicRemote().sendText(text);
+//                System.out.println(session.getId() + "ID!!!");
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
