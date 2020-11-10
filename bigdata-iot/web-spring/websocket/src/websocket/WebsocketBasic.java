@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 
 @ServerEndpoint("/websocket")
 public class WebsocketBasic {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+//    private Logger logger = LoggerFactory.getLogger(this.getClass());
 //    static HashMap<String, Session> messageUserList = new HashMap<String, Session>();
 	
 	@OnOpen
