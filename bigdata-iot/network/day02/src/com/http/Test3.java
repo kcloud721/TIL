@@ -7,7 +7,7 @@ import java.net.URL;
 public class Test3 {
 
 	public static void main(String[] args) {
-		String urlstr = "http://192.168.0.15/network/car.jsp";
+		String urlstr = "http://192.168.0.6/tcpip/car.jsp";
 		URL url = null;
 		HttpURLConnection con = null;
 		
@@ -32,9 +32,7 @@ public class Test3 {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		}
-
-		
+		}		
 	}
 
 }

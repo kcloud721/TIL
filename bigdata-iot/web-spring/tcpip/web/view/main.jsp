@@ -20,10 +20,8 @@ $(document).ready(function(){
 	});
 	$('#phone').click(function(){
 		$.ajax({
-			url:'phone.mc',
-			success:function(data){
-				alert('Send Complete...');
-			}
+			url:'http://192.168.0.6/tcpip/ftest',
+			type:'GET'
 		});
 	});
 });

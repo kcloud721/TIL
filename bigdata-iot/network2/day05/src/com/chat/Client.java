@@ -57,7 +57,7 @@ public class Client {
 				msg = new Msg(id,ms);	
 			}else {
 				ArrayList<String> ips = new ArrayList<>();
-				ips.add("/192.168.0.6");
+				ips.add("/13.124.204.170");
 				msg = new Msg(null,id,ms);
 			}
 			
@@ -159,7 +159,7 @@ public class Client {
 	}
 	
 	public static void main(String[] args) {
-		Client client = new Client("192.168.0.6",5555,
+		Client client = new Client("13.124.204.170",5555,
 				"[CLIENTTT]");
 		try {
 			client.connect();
