@@ -176,13 +176,35 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 
 	}
 
+	public void sendIoT(String cmd) {
+		Thread t1 = new Thread(new SendIoT(cmd));
+		t1.start();
+	}
 	
+	class SendIoT implements Runnable{
+		String cmd;
+		public SendIoT(String cmd) {
+			this.cmd = cmd;
+		}
+		
+		@Override
+		public void run() {
+			byte[] datas = cmd.getBytes();
+			try {
+				out.write(datas);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
 
 	public static void main(String args[]) throws IOException {
 
-		SendAndReceiveSerial ss = new SendAndReceiveSerial("COM7", true);
-		ss.sendSerial("W2810003B010000000000005011", "10003B01");
-
+		SendAndReceiveSerial ss = 
+				new SendAndReceiveSerial("COM5", true);
+//		ss.sendSerial("W2810003B010000000000005011", "10003B01");
+		ss.sendIoT("s");
 	}
 
 }
