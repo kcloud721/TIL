@@ -7,6 +7,7 @@ void setup() {
 void loop() {
   char cmd = "";
   Serial.println("READY");
+  int flag = 0;
 
   if(Serial.available() > 0){
     cmd = Serial.read();
@@ -15,6 +16,10 @@ void loop() {
 
     if(cmd == 's'){
       Serial.println("SENSEOR Start!");
+      flag = 1;
+      // flag  설정 여기부터 다시 짜숄!
+
+
       int data = analogRead(tempPin);
       float temp = ((5.0 * data) / 1024.0) * 100;
       Serial.println(temp);
