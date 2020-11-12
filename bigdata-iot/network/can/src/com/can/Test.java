@@ -26,7 +26,7 @@ public class Test {
 	
 	public static void main(String args[]) throws IOException {
 
-		Test ss = new Test("COM7", true);
+		Test ss = new Test("COM5", true);
 
 	}
 

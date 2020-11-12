@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Scanner;
 
 import gnu.io.CommPort;
 import gnu.io.CommPortIdentifier;
@@ -49,12 +50,13 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 				serialPort = (SerialPort) commPort;
 				serialPort.addEventListener(this);
 				serialPort.notifyOnDataAvailable(true);
-				serialPort.setSerialPortParams(921600, // 통신속도
+				serialPort.setSerialPortParams(9600, // 통신속도
 						SerialPort.DATABITS_8, // 데이터 비트
 						SerialPort.STOPBITS_1, // stop 비트
 						SerialPort.PARITY_NONE); // 패리티
 				in = serialPort.getInputStream();
 				bin = new BufferedInputStream(in);
+				
 				out = serialPort.getOutputStream();
 			} else {
 				System.out.println("Error: Only serial ports are handled by this example.");
@@ -81,12 +83,14 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 		String data;
 
 		public SerialWriter() {
-			this.data = ":G11A9\r";	// 실질 데이터는 G11A9
+			this.data = ":G11A9\r";
 		}
 
 		public SerialWriter(String serialData) {
-			// CheckSum Data 생성 
+			// CheckSum Data 생성
 			this.data = sendDataFormat(serialData);
+			// check sum 
+			// : serialData checksum \r
 		}
 
 		public String sendDataFormat(String serialData) {
@@ -96,6 +100,7 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 			for (char cc : c) {
 				cdata += cc;
 			}
+			//check sum
 			cdata = (cdata & 0xFF);
 
 			String returnData = ":";
@@ -182,6 +187,7 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 	}
 	
 	class SendIoT implements Runnable{
+
 		String cmd;
 		public SendIoT(String cmd) {
 			this.cmd = cmd;
@@ -203,13 +209,19 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 
 		SendAndReceiveSerial ss = 
 				new SendAndReceiveSerial("COM5", true);
-//		ss.sendSerial("W2810003B010000000000005011", "10003B01");
-		ss.sendIoT("s");
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+			System.out.println("Input cmd");
+			String cmd = sc.nextLine();
+			if(cmd.equals("s")) {
+				ss.sendIoT(cmd);
+			}else if(cmd.equals("t")) {
+				ss.sendIoT(cmd);
+			}else if(cmd.equals("q")) {
+				break;
+			}
+		}
+		sc.close();
 	}
 
 }
-
-
-
-
-
