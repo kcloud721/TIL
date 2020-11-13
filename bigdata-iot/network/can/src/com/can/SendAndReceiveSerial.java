@@ -30,7 +30,6 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 	// private boolean start = false;
 
 	static WebSocketClient client = null;
-
 	
 	public SendAndReceiveSerial(String portName, boolean mode) {
 
@@ -162,6 +161,7 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 				String ss = new String(readBuffer);
 				System.out.println("Receive Low Data:" + ss + "||");
 				
+				client = new EmptyClient(new URI("ws://3.35.240.16:88/chatting"));
 				client.send(ss);
 
 			} catch (Exception e) {
@@ -218,7 +218,7 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 	}
 
 	public static void main(String args[]) throws IOException, URISyntaxException {
-    	client = new EmptyClient(new URI("ws://192.168.1.22:88/chatting"));
+    	
 
 		SendAndReceiveSerial ss = 
 				new SendAndReceiveSerial("COM5", true);
