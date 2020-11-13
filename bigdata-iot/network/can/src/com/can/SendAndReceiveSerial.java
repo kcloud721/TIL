@@ -4,7 +4,13 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Scanner;
+
+import org.java_websocket.client.WebSocketClient;
+
+import com.ws.EmptyClient;
 
 import gnu.io.CommPort;
 import gnu.io.CommPortIdentifier;
@@ -23,6 +29,9 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 	private String rawCanID, rawTotal;
 	// private boolean start = false;
 
+	static WebSocketClient client = null;
+
+	
 	public SendAndReceiveSerial(String portName, boolean mode) {
 
 		try {
@@ -129,6 +138,7 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 	// --------------------------------------------------------
 
 	public void serialEvent(SerialPortEvent event) {
+		
 		switch (event.getEventType()) {
 		case SerialPortEvent.BI:
 		case SerialPortEvent.OE:
@@ -151,6 +161,8 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 
 				String ss = new String(readBuffer);
 				System.out.println("Receive Low Data:" + ss + "||");
+				
+				client.send(ss);
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -205,7 +217,8 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 		
 	}
 
-	public static void main(String args[]) throws IOException {
+	public static void main(String args[]) throws IOException, URISyntaxException {
+    	client = new EmptyClient(new URI("ws://192.168.1.22:88/chatting"));
 
 		SendAndReceiveSerial ss = 
 				new SendAndReceiveSerial("COM5", true);
