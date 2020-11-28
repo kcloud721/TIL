@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 import org.java_websocket.client.WebSocketClient;
 
-import com.ws.EmptyClient;
+import com.ws.WsClient;
 
 import gnu.io.CommPort;
 import gnu.io.CommPortIdentifier;
@@ -29,7 +29,7 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 	private String rawCanID, rawTotal;
 	// private boolean start = false;
 
-	static WebSocketClient client = null;
+	static WebSocketClient WsClient;
 	
 	public SendAndReceiveSerial(String portName, boolean mode) {
 
@@ -161,8 +161,7 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 				String ss = new String(readBuffer);
 				System.out.println("Receive Low Data:" + ss + "||");
 				
-				client = new EmptyClient(new URI("ws://3.35.240.16:88/chatting"));
-				client.send(ss);
+				WsClient.send(ss);
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -218,10 +217,13 @@ public class SendAndReceiveSerial implements SerialPortEventListener {
 	}
 
 	public static void main(String args[]) throws IOException, URISyntaxException {
-    	
-
-		SendAndReceiveSerial ss = 
-				new SendAndReceiveSerial("COM5", true);
+		
+		// WebSocket Client 선언, 최초 연결 
+		WsClient = new WsClient(new URI("ws://3.35.240.16:88/chatting"));
+		WsClient.connect();
+				
+		SendAndReceiveSerial ss = new SendAndReceiveSerial("COM5", true);
+				
 		Scanner sc = new Scanner(System.in);
 		while(true) {
 			System.out.println("Input cmd");

@@ -11,7 +11,7 @@ import java.net.URLConnection;
 public class Test1 {
 
 	public static void main(String[] args) throws IOException {
-		String urlstr = "http://192.168.0.15/network/users.jsp";
+		String urlstr = "http://192.168.1.22/network/users.jsp";
 		URL url = null;
 		URLConnection con = null;
 		
