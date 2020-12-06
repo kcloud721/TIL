@@ -97,3 +97,75 @@ hexString.toUpperCase();	// to 대문자
 hexString.toLowerCase();	// to 소문자
 ```
 
+
+
+### * int 범위를 초과하는 숫자를 연산해야할 경우
+
+* int 대신 long 자료형 사용
+
+* math 패키지의 BigInteger 패키지 사용
+
+  정수로만 이루어진 String 을 받음
+
+  ```java
+  import java.math.BigInteger;
+  public static void main(String[] args) { 
+    BigInteger a = new BigInteger("100000000000000000000000000000000000");
+    System.out.println(a);
+  }
+  ```
+
+  출처: https://javariankm.tistory.com/26 [자바리안의 메모장]
+
+## 소수점 자리 표현 & 반올림
+
+소수점 이하 셋째 자리에서 반올림하여 둘째자리까지 출력
+
+```java
+System.out.println(String.format("%.2f", a / (double)b));
+```
+
+
+
+## 자바의 논리연산
+
+* AND : `&`
+* OR : `|`
+* XOR : `^`
+* NOT : `~`
+
+
+
+## 삼항연산
+
+![삼항연산자](md-images/99375E495C020AB503.jpeg)
+
+ㅊㅊ : https://coding-factory.tistory.com/266
+
+* 중첩하여서 비교도 가능
+
+  ```java
+  int a = (a<b ? a:b)<c ? (a<b ? a:b) : c;
+  ```
+
+  
+
+
+
+## switch - case 문에서 AND/OR 판단하려면
+
+```java
+int a = sc.nextInt();
+switch(a) {
+		case 12:
+		case 1:
+		case 2:
+			System.out.println("winter");
+			break;
+		case 3:
+		case 4:
+		case 5:
+			System.out.println("spring");
+			break;
+```
+
