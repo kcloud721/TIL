@@ -71,7 +71,7 @@ double은 float의 2배 이상의 실수 저장 가능
 
 ## 진수 변환 (Integer)
 
-### From 10진수 to 2/8/16 진수
+### 10진수 ➡️ 2/8/16 진수
 
 ```java
 int i = 127;
@@ -80,7 +80,7 @@ String octalString = Integer.toOctalString(i);   //8진수
 String hexString = Integer.toHexString(i);       //16진수
 ```
 
-### From 2/8/16진수 to 10진수
+### 2/8/16진수 ➡️ 10진수
 
 ```java
 // 8진수를 입력받아 10진수로 변환하는 예
