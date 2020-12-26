@@ -87,6 +87,7 @@
 		var msg = $("#chatting").val();
 		ws.send(uN+" : "+msg);
 		$('#chatting').val("");
+		console.log(msg);
 	}
 </script>
 <body>
