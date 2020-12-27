@@ -148,11 +148,27 @@ System.out.println(String.format("%.2f", a / (double)b));
   int a = (a<b ? a:b)<c ? (a<b ? a:b) : c;
   ```
 
-  
 
 
 
-## switch - case 문에서 AND/OR 판단하려면
+## BufferWriter
+
+`System.out.println();` 의 출력 속도는 매우 느림
+
+참고 : https://www.acmicpc.net/blog/view/57
+
+IDE에서는 실행 잘 되는데 채점할 때 시간초과가 난다면 이 함수가 원인일 수도..
+
+```java
+BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+bw.write("hi..!\n");
+bw.flush();
+bw.close();
+```
+
+
+
+## switch - case 문에서 AND/OR
 
 ```java
 int a = sc.nextInt();
