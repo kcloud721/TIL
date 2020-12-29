@@ -28,9 +28,12 @@ spilt("[.]");
 
 자바는 `unsigned int`  가 없음. `unsigned` 는 `char` 형만 지원한다고 함
 
-`long` 을 사용하면 됨
+* `long` 을 사용하면 됨
 
 > 참고 : int의 범위는 -2147483648 ~ +2147483647
+
+* double 은 소수에 적합
+* long 은 정수에 적합
 
 
 
@@ -89,6 +92,33 @@ System.out.println(Integer.valueOf(a, 8));
 ```
 
 
+
+## Double의 지수 표현 제거
+
+* NumberFormat
+
+  ```java
+  double num = 4.82811884E8;
+   
+  NumberFormat f = NumberFormat.getInstance();        
+  f.setGroupingUsed(false);        
+   
+  System.out.println(f.format(num));
+  ```
+
+* BigDemical
+
+  ```java
+  String  value = "482811884";
+  //or double value = 4.82811884E8;
+   
+  BigDecimal bigDecimal = new BigDecimal(value);
+  System.out.println(bigDecimal.toString());
+  ```
+
+  
+
+  
 
 ## 대문자 <-> 소문자 변환
 
@@ -185,3 +215,6 @@ switch(a) {
 			break;
 ```
 
+
+
+## 
