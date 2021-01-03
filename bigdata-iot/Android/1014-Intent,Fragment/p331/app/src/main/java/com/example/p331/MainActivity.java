@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fragment1 = new Fragment1(this);    // fragment에 현재 메인액티비티 전달
-        fragment2 = new Fragment2(this);
-        fragment3 = new Fragment3(this);
+        fragment1 = new Fragment1(null);    // fragment에 현재 메인액티비티 전달
+        fragment2 = new Fragment2(null);
+        fragment3 = new Fragment3(null);
 
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.framelayout, fragment1).commit();
@@ -41,18 +41,19 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if(item.getItemId() == R.id.tab1){
-                    fragmentManager.beginTransaction().replace(R.id.framelayout, fragment1).commit();
-                    Toast.makeText(MainActivity.this, "tab1", Toast.LENGTH_SHORT).show();
-
-                }else if(item.getItemId() == R.id.tab2){
-                    fragmentManager.beginTransaction().replace(R.id.framelayout, fragment2).commit();
-                    Toast.makeText(MainActivity.this, "tab2", Toast.LENGTH_SHORT).show();
-
-                }else if(item.getItemId() == R.id.tab3){
-                    fragmentManager.beginTransaction().replace(R.id.framelayout, fragment3).commit();
-                    Toast.makeText(MainActivity.this, "tab3", Toast.LENGTH_SHORT).show();
-
+                switch (item.getItemId()) {
+                    case (R.id.tab1):
+                        fragmentManager.beginTransaction().replace(R.id.framelayout, fragment1).commit();
+                        Toast.makeText(MainActivity.this, "tab1", Toast.LENGTH_SHORT).show();
+                        break;
+                    case (R.id.tab2):
+                        fragmentManager.beginTransaction().replace(R.id.framelayout, fragment2).commit();
+                        Toast.makeText(MainActivity.this, "tab2", Toast.LENGTH_SHORT).show();
+                        break;
+                    case(R.id.tab3):
+                        fragmentManager.beginTransaction().replace(R.id.framelayout, fragment3).commit();
+                        Toast.makeText(MainActivity.this, "tab3", Toast.LENGTH_SHORT).show();
+                        break;
                 }
                 return false;
             }

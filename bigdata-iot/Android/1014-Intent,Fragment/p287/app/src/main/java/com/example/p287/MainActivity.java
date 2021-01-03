@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setTitle("FRAGMENTTE");
 //        actionBar.setLogo(R.drawable.d1);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
-//        actionBar.hide();
+        actionBar.hide();
 
         String [] permission = {
                 Manifest.permission.ACCESS_FINE_LOCATION,
