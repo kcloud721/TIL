@@ -2,7 +2,18 @@
 
 ## codewars 풀이 목록
 
-#### Disemvowel Trolls](https://www.codewars.com/kata/52fba66badcd10859f00097e)
+#### 
+
+| 문제                                                         | 나의 풀이                                                    | 풀이 키워드     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | --------------- |
+| [Disemvowel Trolls](https://www.codewars.com/kata/52fba66badcd10859f00097e) | [🥸](https://github.com/kcloud721/TIL/blob/master/algorithms/javascript/Disemvowel-Trolls.js) | 정규식, replace |
+|                                                              |                                                              |                 |
+|                                                              |                                                              |                 |
+|                                                              |                                                              |                 |
+
+
+
+# 소소한 javascript
 
 ## 특정 문자 제거하기 (모음 제거)
 
