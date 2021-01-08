@@ -32,7 +32,7 @@ public class SecondActivity extends AppCompatActivity {
 
         actionBar = getSupportActionBar();
         actionBar.hide();
-`
+
         bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
