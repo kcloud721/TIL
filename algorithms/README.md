@@ -53,7 +53,6 @@
 | [고양이와 개는 몇 마리 있을까]()                             | GROUP BY, COUNT         |
 | [동명 동물 수 찾기](https://github.com/kcloud721/TIL/blob/master/algorithms/SQL/59041-%EB%8F%99%EB%AA%85%20%EB%8F%99%EB%AC%BC%20%EC%88%98%20%EC%B0%BE%EA%B8%B0.md) | 서브쿼리                |
 | [입양 시각 구하기(1)](https://github.com/kcloud721/TIL/blob/master/algorithms/SQL/59412-%EC%9E%85%EC%96%91%20%EC%8B%9C%EA%B0%81%20%EA%B5%AC%ED%95%98%EA%B8%B0(1).md) | 날짜, 시간, DATE_FORMAT |
-|                                                              |                         |
 
 
 
