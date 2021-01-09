@@ -1,0 +1,45 @@
+/.metadata/
+/servers
+.settings/
+.project
+.classpath
+.DS_Store
+.idea/
+bin/
+
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+/logs/
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+#*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar
+
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
