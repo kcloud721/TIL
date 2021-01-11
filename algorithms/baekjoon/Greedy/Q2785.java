@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int result = 0;
+        int usedGori = 0;
         int[] chains = new int[n];
 
         for (int i = 0; i < n; i++) {
@@ -16,26 +16,25 @@ public class Main {
         }
 
         Arrays.sort(chains);
-        int i = 0;
-        int min = chains[i];
-        int num_chains = chains.length - 1;
+        int i = 0;  // 고리 빼서 사용할 체인 위치
+        int indexOfMaster = chains.length - 1;  // 이어붙일 체인 위치
+
 
         while(true){
-            if(n == 2){
-                result = 1;
-                break;
-            } else if(num_chains <= min){
-                result = num_chains;
+            if(chains[i] == 0) {
+                i++;
+            }
+            if(i >= indexOfMaster){
                 break;
             }
-            i++;
-            result += min;
-            min = chains[i];
-            num_chains--;
+
+            usedGori++;
+            indexOfMaster--;
+            chains[i]--;
 
         }
 
-        System.out.println(result);
+        System.out.println(usedGori);
     }
 
 }
