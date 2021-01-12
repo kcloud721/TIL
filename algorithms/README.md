@@ -16,11 +16,11 @@
 ## 3. [백준 greedy](https://github.com/kcloud721/TIL/tree/master/algorithms/baekjoon/Greedy)
 
 
-| 문제                                                    | 나의 풀이                                                    | 풀이 키워드 |
-| ------------------------------------------------------- | ------------------------------------------------------------ | ----------- |
-| [5585](https://www.acmicpc.net/problem/5585) : 거스름돈 | [💆](https://github.com/kcloud721/TIL/tree/master/algorithms/baekjoon/11005) | 몫과 나머지 |
-| [2785](https://www.acmicpc.net/problem/2785) : 체인     | [☕️](https://github.com/kcloud721/TIL/blob/master/algorithms/baekjoon/Greedy/Q2785.java) | 정렬        |
-|                                                         |                                                              |             |
+| 문제                                                       | 나의 풀이                                                    | 풀이 키워드   |
+| ---------------------------------------------------------- | ------------------------------------------------------------ | ------------- |
+| [5585](https://www.acmicpc.net/problem/5585) : 거스름돈    | [💆](https://github.com/kcloud721/TIL/tree/master/algorithms/baekjoon/11005) | 몫과 나머지   |
+| [2785](https://www.acmicpc.net/problem/2785) : 체인        | [☕️](https://github.com/kcloud721/TIL/blob/master/algorithms/baekjoon/Greedy/Q2785.java) | 정렬          |
+| [2885](https://www.acmicpc.net/problem/2885) : 초콜릿 식사 | [🚀](https://github.com/kcloud721/TIL/blob/master/algorithms/baekjoon/Greedy/Q2885.java) | 제곱 예외처리 |
 
 ## 3. [프로그래머스](https://github.com/kcloud721/TIL/tree/master/algorithms/programmers)
 
