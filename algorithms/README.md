@@ -28,11 +28,11 @@
 
 | 문제                                                         | 풀이                                                         | 키워드        | 비고 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------- | ---- |
-| [완주하지 못한 선수](https://programmers.co.kr/learn/courses/30/lessons/42576) | [42576.java](https://github.com/kcloud721/TIL/tree/master/algorithms/programmers/42576) | HashMap, Sort |      |
-| [가운데 글자 가져오기](https://programmers.co.kr/learn/courses/30/lessons/12903) | [12903.java](https://github.com/kcloud721/TIL/tree/master/algorithms/programmers/12903) | substring     |      |
-| [가장 큰 수](https://programmers.co.kr/learn/courses/30/lessons/42746) | 42746.java ... 푸는 중                                       | Sort          |      |
-| [주식가격](https://programmers.co.kr/learn/courses/30/lessons/42584) | Q42584.java                                                  | Stack         |      |
-| [기능개발](https://programmers.co.kr/learn/courses/30/lessons/42586) | java, javascript                                             | Stack         |      |
+| [42576: 완주하지 못한 선수](https://programmers.co.kr/learn/courses/30/lessons/42576) | [42576.java](https://github.com/kcloud721/TIL/tree/master/algorithms/programmers/42576) | HashMap, Sort |      |
+| [12903: 가운데 글자 가져오기](https://programmers.co.kr/learn/courses/30/lessons/12903) | [12903.java](https://github.com/kcloud721/TIL/tree/master/algorithms/programmers/12903) | substring     |      |
+| [42746: 가장 큰 수](https://programmers.co.kr/learn/courses/30/lessons/42746) | 42746.java ... 푸는 중                                       | Sort          |      |
+| [42584: 주식가격](https://programmers.co.kr/learn/courses/30/lessons/42584) | [Q42584.java](https://github.com/kcloud721/TIL/blob/master/algorithms/programmers/42586/Q42586.java) | Stack         |      |
+| [42586: 기능개발](https://programmers.co.kr/learn/courses/30/lessons/42586) | [java](https://github.com/kcloud721/TIL/blob/master/algorithms/programmers/42586/Q42586.java), [javascript](https://github.com/kcloud721/TIL/blob/master/algorithms/programmers/42586/Q42586.js) | Stack         |      |
 
 
 
