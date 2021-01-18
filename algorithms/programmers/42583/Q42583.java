@@ -11,9 +11,9 @@ public class Q42583 {
 	        int count_time = 0;
 	        Queue<Integer> waiting = new LinkedList<>();
 	        Queue<Integer> completed = new LinkedList<>();
-	        int[] info = new int[2];
-	        HashMap<String, int[]> maps = new HashMap<>();
+	        HashMap<String, int[][]> maps = new HashMap<>();
 	        Queue<HashMap> on_bridge = new LinkedList<>();
+	        int[][] info = new int[truck_weights.length][2];
 	        int on_bridge_weight = 0;
 	        
 	        for(int i=0; i<truck_weights.length; i++) {
@@ -23,30 +23,37 @@ public class Q42583 {
 	        int i = 0;
 	        
 	        // 일단 처음엔 그냥 조건 없이 다리 위로 
-	        info[0] = truck_weights[i];	// 무게 
-	        info[1] = 1; // 위치 
+	        truckInfo t1 = new truckInfo("t1", truck_weights[i], 1);
+	        
+	        info[i][0] = truck_weights[i];	// 무게 
+	        info[i][1] = 1; // 위치 
 	        maps.put("t0", info);	//maps에 할당 
 	        on_bridge_weight += truck_weights[i];	// 다리 무게 추가 
 	        i++;
 	        count_time++;
 	        System.out.println(maps);
-	        System.out.println(Arrays.toString(maps.get("t0")));
+	        System.out.println("jihi" + Arrays.deepToString(maps.get("t0")));
 	        
 	        
 	        while(completed.size() != truck_weights.length) {
 	        	if(on_bridge_weight <= weight) {	// 다리무게 견딜 수 있을 경우 다리에 탑승 
-	        		info[0] = truck_weights[i];
-	        		info[1] = 1;
-	        		maps.put("t" + i, info);
+	        		info[i][0] = truck_weights[i];	// 무게 
+	    	        info[i][1] = 1; // 위치 
+//	        		maps.put("t" + i, info[i][]);
 	        		on_bridge_weight += truck_weights[i];
 	        		i++;
  	        	} else {	// 견딜 수 없으면 다리에 오를 수 없음 
 
 	        	}
 	        	
-	        	// 다리 위 트럭들 한칸 이동
+	        	// 다리 위 트럭들 한칸씩 이동
+	        	System.out.println(maps);
+	        	System.out.println(Arrays.deepToString(maps.get("t0")));
+	        	System.out.println(Arrays.deepToString(maps.get("t1")));
+	        	break;
+	        	// 끝까지 이동한 트럭 completed에 옮김 
 	        	
-        		count_time++;
+//        		count_time++;
 
 	        	
 	        }
@@ -73,6 +80,7 @@ public class Q42583 {
 }
 
 class truckInfo{
+	String id;
 	int weights;
 	int location;
 	
@@ -80,9 +88,18 @@ class truckInfo{
 		
 	}
 
-	public truckInfo(int weights, int location) {
+	public truckInfo(String id, int weights, int location) {
+		this.id = id;
 		this.weights = weights;
 		this.location = location;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public int getWeights() {
@@ -100,7 +117,13 @@ class truckInfo{
 	public void setLocation(int location) {
 		this.location = location;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "truckInfo [id=" + id + ", weights=" + weights + ", location=" + location + "]";
+	}
+
+		
 	
 	
 }
