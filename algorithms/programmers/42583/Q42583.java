@@ -1,88 +1,65 @@
-package stackQue;
+import java.util.*;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
+class Solution {
+	public int solution(int bridge_length, int weight, int[] truck_weights) {
+		int count_time = 0;
+		Queue<truckInfo> waitingQ = new LinkedList<>();
+		Queue<truckInfo> progressQ = new LinkedList<>();
+		Queue<truckInfo> completedQ = new LinkedList<>();
+		int on_bridge_weight = 0;
 
-public class Q42583 {
-	class Solution {
-	    public int solution(int bridge_length, int weight, int[] truck_weights) {
-	        int count_time = 0;
-	        Queue<Integer> waiting = new LinkedList<>();
-	        Queue<Integer> completed = new LinkedList<>();
-	        HashMap<String, truckInfo> maps = new HashMap<>();
-	        Queue<HashMap> on_bridge = new LinkedList<>();
-	        int[][] info = new int[truck_weights.length][2];
-	        int on_bridge_weight = 0;
-	        
-	        for(int i=0; i<truck_weights.length; i++) {
-	        	waiting.add(truck_weights[i]);
-	        }
-	        
-	        int i = 0;
-	        
-	        // 일단 처음엔 그냥 조건 없이 다리 위로 
-	        truckInfo t = new truckInfo("t0", truck_weights[i], 1);
-	        maps.put("t0", t);	//maps에 할당 
-	        on_bridge_weight += truck_weights[i];	// 다리 무게 추가 
-	        i++;
-	        count_time++;
-	        System.out.println(maps);
-	        System.out.println("jihokokoi" + maps.get("t0"));
-	        
-	        
-	        while(completed.size() != truck_weights.length) {
-	        	if(on_bridge_weight <= weight) {	// 다리무게 견딜 수 있을 경우 다리에 탑승 
-	        		info[i][0] = truck_weights[i];	// 무게 
-	    	        info[i][1] = 1; // 위치 
-//	        		maps.put("t" + i, info[i][i]);
-	        		on_bridge_weight += truck_weights[i];
-	        		i++;
- 	        	} else {	// 견딜 수 없으면 다리에 오를 수 없음 
+		for (int i = 0; i < truck_weights.length; i++) {
+			String truckId = "t" + i;
+			int truckWeights = truck_weights[i];
+			int truckLoc = 0;
+			truckInfo t = new truckInfo(truckId, truckWeights, truckLoc);
+			waitingQ.add(t);
+		}
 
-	        	}
-	        	
-	        	// 다리 위 트럭들 한칸씩 이동
-	        	System.out.println(maps);
-//	        	System.out.println(Arrays.deepToString(maps.get("t0")));
-//	        	System.out.println(Arrays.deepToString(maps.get("t1")));
-	        	break;
-	        	// 끝까지 이동한 트럭 completed에 옮김 
-	        	
-//        		count_time++;
+		while (completedQ.size() != truck_weights.length) {
+			if (progressQ.size() != 0) {
+				if (progressQ.element().getLocation() == bridge_length) {
+					// 끝까지 이동한 트럭 completed에 옮김
+					on_bridge_weight -= progressQ.element().getWeights(); // 다리 무게 다시 감소
+					completedQ.add(progressQ.poll()); // 큐 이동
+					System.out.println("BYE");
+				}
+			}
 
-	        	
-	        }
-	        
-	        System.out.println(waiting);
-	        
-	        
-	        return count_time;
-	    }
+			if (waitingQ.size() != 0) {
+				if (on_bridge_weight + waitingQ.element().getWeights() <= weight) { // 다리무게 견딜 수 있을 경우 waiting 트럭 탑승
+					on_bridge_weight += waitingQ.element().weights; // 다리 무게 카운트
+					progressQ.add(waitingQ.poll()); // 진행중 큐로 옮김
+				}
+			}
+
+			// 다리 위 트럭들 한칸씩 이동
+			for (truckInfo prog : progressQ) {
+				prog.setLocation(prog.getLocation() + 1);
+			}
+
+			// 경과시간 카운트
+			count_time++;
+
+			// System.out.println(waitingQ);
+			// System.out.println(progressQ);
+			// System.out.println(completedQ);
+			// System.out.println("경과시간 " + count_time);
+			// System.out.println();
+
+		}
+
+		return count_time;
 	}
-
-	public static void main(String[] args) {
-		Q42583 q = new Q42583();
-		Q42583.Solution sol = q.new Solution();
-		
-		int bridge_length = 2;
-		int weight = 10;
-		int[] truck_weights = {7, 4, 5, 6};
-		
-		System.out.println(sol.solution(bridge_length, weight, truck_weights));
-
-	}
-
 }
 
-class truckInfo{
+class truckInfo {
 	String id;
 	int weights;
 	int location;
-	
+
 	public truckInfo() {
-		
+
 	}
 
 	public truckInfo(String id, int weights, int location) {
@@ -120,5 +97,4 @@ class truckInfo{
 		return "truckInfo [id=" + id + ", weights=" + weights + ", location=" + location + "]";
 	}
 
-	
 }
