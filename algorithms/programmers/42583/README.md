@@ -280,6 +280,22 @@ class truckInfo {
 
 ### javascript
 
+자바에선 클래스를 만들어 객체에 정보를 담았는데, 자바스크립트 또한 Object를 활용하여 비슷하게 구현할 수 있었다.
+
+### 객체 선언 (key-value)
+
+```javascript
+var truckInfo = {
+  truckId: 'truck1'
+  weight: 7,
+  location: 5
+};
+```
+
+
+
+### js 로 작성한 풀이
+
 ```javascript
 function solution(bridge_length, weight, truck_weights) {
     var count_time = 0;

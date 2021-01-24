@@ -1,60 +1,51 @@
-package hash;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 
-public class Q42577 {
-	class Solution {
-	    public boolean solution(String[] phone_book) {
-	        boolean answer = true;
-	        HashMap<String, Integer> maps = new HashMap<>();
-	        
-	        // 해쉬맵에 폰번호+길이 저장 
-	        for(int i=0; i<phone_book.length; i++) {
-	        	String phone_num = phone_book[i];
-	        	int num_length = phone_book[i].length();
-	        	maps.put(phone_num, num_length);
-	        }
-	        
-	        //밸류 기준으로 오름차순 정렬
-	       Collections.sort(keySetList, );
-	        
-	        // 하나 씩 비교해봐야..? 
-	        
-	        return answer;
-	    }
-	}
-	
-	public static List sortByValue(final HashMap maps) {
-		ArrayList<String> list = new ArrayList();
-		list.addAll(maps.keySet());
-		
-		Collections.sort(list, new Comparator() {
-			public int compare(Object o1, Object o2) {
-				Object v1 = maps.get(o1);
-				Object v2 = maps.get(o2);
-				
-				return ((Comparable) v2).compareTo(v1);
+class Solution {
+	public boolean solution(String[] phone_book) {
+		boolean answer = true;
+		HashMap<String, Integer> maps = new HashMap<>();
+
+		// 해쉬맵에 폰번호String + 번호길이Integer 저장
+		for (int i = 0; i < phone_book.length; i++) {
+			String phone_num = phone_book[i];
+			int num_length = phone_book[i].length();
+			maps.put(phone_num, num_length);
+		}
+
+		// ** 밸류(번호 길이) 기준으로 오름차순 정렬
+		// 1. hashMap.entrySet()으로 Entry 리스트에 key-value 저장
+		List<Entry<String, Integer>> list_entries = new ArrayList<Entry<String, Integer>>(maps.entrySet());
+
+		// 2. 비교함수 Comparator를 사용하여 오름차순으로 정렬
+		Collections.sort(list_entries, new Comparator<Entry<String, Integer>>() {
+			// compare로 값을 비교
+			public int compare(Entry<String, Integer> obj1, Entry<String, Integer> obj2) {
+				// 오름 차순 정렬
+				return obj1.getValue().compareTo(obj2.getValue());
+
+				// 내림 차순 정렬
+				// return obj2.getValue().compareTo(obj2.getValue());
 			}
 		});
-		
-		Collections.reverse(list);
-		return list;
-		
-	}
 
-	public static void main(String[] args) {
-		Q42577 q = new Q42577();
-		Q42577.Solution sol = q.new Solution();
-		
-		String[] phone_book = {"97674223", "119", "1195524421"};
-		
-		System.out.println(sol.solution(phone_book));
+		// 함수 비교
+		for (int i = 0; i < list_entries.size(); i++) {
+			String stdStr = list_entries.get(i).getKey();
+			int stdStrSize = stdStr.length();
+			for (int j = i + 1; j < list_entries.size(); j++) {
+				String nextStr = list_entries.get(j).getKey();
+				String compareStr = nextStr.substring(0, stdStrSize);
+				if (stdStr.equals(compareStr)) {
+					answer = false;
+					return answer;
+				}
+			}
+		}
+		return answer;
 	}
-
 }
