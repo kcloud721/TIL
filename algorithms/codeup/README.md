@@ -217,4 +217,41 @@ switch(a) {
 
 
 
-## 
+## String 비교
+
+ㅊㅊ: https://jamesdreaming.tistory.com/86
+
+### startsWith(), endsWith
+
+* boolean startsWith(String prefix)
+
+  비교대상 문자열이 prefix 값으로 시작하는지 여부를 true/false 로 반환
+
+  ```java
+  String str1 = "자바 코딩";
+  System.out.println(str.startsWith("자바"));
+  
+  >> true
+  ```
+
+* boolean endsWith(String suffix)
+
+  비교대상 문자열이 suffix 값으로 끝나는지 여부를 반환
+
+### indexOf
+
+특정 문자(열)을 찾아 최초로 발견된 위치를 int로 반환
+
+```java
+String str = "Hello world";
+System.out.println(str.indexOf("o"));
+System.out.println(str.indexOf("o", 5);
+System.out.println(str.indexOf("x");
+
+>> 4
+>> 7
+
+```
+
+
+
