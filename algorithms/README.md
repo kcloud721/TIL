@@ -54,6 +54,16 @@
 | [42583: 다리를 지나는 트럭](https://programmers.co.kr/learn/courses/30/lessons/42583) | [java](https://github.com/kcloud721/TIL/blob/master/algorithms/programmers/42583/Q42583.java) | Queue, Class |      |
 |                                                              |                                                              |              |      |
 
+### 기출
+
+| 문제                                                         | 풀이        | 키워드 | 비고 |
+| ------------------------------------------------------------ | ----------- | ------ | ---- |
+| [무지의 먹방 라이브](https://programmers.co.kr/learn/courses/30/lessons/42891) | Q42891.java |        |      |
+|                                                              |             |        |      |
+|                                                              |             |        |      |
+|                                                              |             |        |      |
+
+
 
 ## 5. [SQL](https://github.com/kcloud721/TIL/tree/master/algorithms/SQL)
 
