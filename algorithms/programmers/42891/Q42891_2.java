@@ -29,23 +29,15 @@ public class Q42891_2 {
 	        arr.sort(CompFoodSize);
 	        System.out.println(arr);
 	        
-	        int i = 0;
-	        while(true) {
-	        	if(i > k) {
-	        		answer = -1;
-	        		break;
-	        	} else if(arr.get(i).foodSize > k) {
+	        for(int i=0; i<arr.size(); i++) {
+	        	int minusTime = arr.get(i).foodSize + (arr.size() - i);
+	        	if(minusTime > k) {
+	        		answer = arr.get((int) (i+k)).index;
 	        		break;
 	        	} else {
-	        		k -= arr.get(i).foodSize;
-	        		i++;
+	        		k -= minusTime;
 	        	}
-	        	System.out.println(k);
 	        }
-	        
-	        System.out.println(arr.get(i).index);
-	        answer = arr.get(i).index;
-	        
 	        
 	        return answer;
 	    }
@@ -57,8 +49,8 @@ public class Q42891_2 {
 		Q42891_2 q = new Q42891_2();
 		Q42891_2.Solution sol = q.new Solution();
 		
-		int[] food_times = {1,1,1};
-		int k = 5;
+		int[] food_times = {3,1,2};
+		int k = 10;
 		
 		System.out.println("ANSWER: " + sol.solution(food_times, k));
 
