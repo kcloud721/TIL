@@ -9,7 +9,7 @@
 * ArrayList 선언
 
   ```bash
-  ArrayList<String> my_arr_list = nuew ArrayList<String>();
+  ArrayList<String> my_arr_list = new ArrayList<String>();
   ```
 
 * add
