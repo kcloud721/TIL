@@ -19,7 +19,7 @@
   | 기반기술                | java (jdk 1.8)                                  | [🔗](https://github.com/kcloud721/TIL/tree/master/bigdata-iot/java) |
   |                         | SQL (Orace XE)                                  | [🔗](https://github.com/kcloud721/TIL/tree/master/bigdata-iot/sql-oracleDB) |
   | 운영관리시스템 구축기술 | Dynamic Web Client (Tomcat9.0 + Web Dispatcher) | [🔗](https://github.com/kcloud721/TIL/tree/master/bigdata-iot/web) |
-  |                         | Spring 기반 MVC 모델                            | [🔗](https://github.com/kcloud721/TIL/tree/master/bigdata-iot/web-spring) |
+  |                         | Spring                                          | [🔗](https://github.com/kcloud721/TIL/tree/master/bigdata-iot/web-spring) |
   | 빅데이터 저장 및 분석   | Linux (CentOS 7)                                | [🔗](https://github.com/kcloud721/TIL/tree/master/bigdata-iot/linux) |
   |                         | Hadoop (1.2)                                    | [🔗](https://github.com/kcloud721/TIL/tree/master/bigdata-iot/hadoop) |
   |                         | R                                               | [🔗](https://github.com/kcloud721/TIL/tree/master/bigdata-iot/R) |
@@ -129,4 +129,5 @@
 # others
 
 * [Git](https://github.com/kcloud721/TIL/tree/master/others/git)
+* [H/W (Digital Desgin, Micro Controller)](https://github.com/kcloud721/TIL/tree/master/others/HW)
 * [Markdown](https://github.com/kcloud721/TIL/tree/master/others/markdown)
