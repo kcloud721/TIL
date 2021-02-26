@@ -43,6 +43,7 @@
 | [2747](https://www.acmicpc.net/problem/2747) : 피보나치 수   | [🐤](https://github.com/kcloud721/TIL/tree/master/algorithms/baekjoon/2747) | 재귀함수, HashMap         |
 | [2609](https://www.acmicpc.net/problem/2609) : 최대공약수와 최소공배수 | [🐔](https://github.com/kcloud721/TIL/tree/master/algorithms/baekjoon/2609) | 유클리드 호제법, 재귀함수 |
 | [1260](https://www.acmicpc.net/problem/1260) : DFS와 BFS     | [😾](https://github.com/kcloud721/TIL/tree/master/algorithms/baekjoon/1260) | 완전탐색 (BFS, DFS)       |
+| [2750](https://www.acmicpc.net/problem/2750) : 수 정렬하기   |                                                              | 정렬 (선택정렬)           |
 
 ### [greedy](https://github.com/kcloud721/TIL/tree/master/algorithms/baekjoon/Greedy)
 
