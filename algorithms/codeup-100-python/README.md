@@ -7,6 +7,23 @@ print(a//b)	#몫
 print(a%b)	#나머지
 ```
 
+## 수학연산
+
+```python
+# x의 y제곱
+print(x**y) 
+
+# 반올림: x를 첫째자리까지 표현
+x=3.145
+print(round(x, 1))
+>> 3.1
+
+# 반올림: 고정 소수점
+x=3.1
+print("{0:.2f}".format(x))
+>> 3.10
+```
+
 
 
 ## 비트연산
@@ -49,3 +66,12 @@ for i in range(0,n):
 알파벳 a 의 아스키코드는 `ord('a')` 로 출력.
 
 정수 n의 유니코드 문자 변환은 `chr(n)` 으로 출력.
+
+
+
+## 줄바꿈 제거
+
+```python
+print('Hello World', end='')
+```
+
