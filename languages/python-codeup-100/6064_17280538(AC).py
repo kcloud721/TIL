@@ -1,0 +1,6 @@
+﻿a, b, c = input().split()
+a = int(a)
+b = int(b)
+c = int(c)
+ab = (a if a<b else b)
+print(ab if ab<c else c)
