@@ -1,4 +1,4 @@
-object Impicit3 extends App {
+object Implicit3 extends App {
   def sortBy1[A, B](lst: List[A])(f: A => B)(implicit ord: Ordering[B]): List[A] = {
     lst.sortBy(f)
   }

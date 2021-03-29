@@ -1,6 +1,6 @@
 import scala.concurrent.ExecutionContext
 
-object Implicit extends App{
+object Implicit1 extends App{
   implicit val implicitValue: Int = 500
 
   def plusValue(paramX: Int)(implicit paramY: Int) = paramX + paramY
