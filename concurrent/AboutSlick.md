@@ -228,3 +228,29 @@ val sql = coffees.insertStatement
 
 
 ## Update
+
+```scala
+val q = for {
+  c <- coffees if c.name === "Espresso"
+} yield c.price
+val updateAction = q.update(10.49)
+val sql = q.updateStatement	// update 내용 get
+```
+
+
+
+## Upserting
+
+```scala
+val updated = users.insertOrUpdate(User(Some(1), "Admin", "Zeiger"))
+val updatedAdmin = (users returning users).insertOrUpdate(User(Some(1), "Slick Admin", "Zeiger"))
+```
+
+??
+
+
+
+## Compiled Queries
+
+
+
