@@ -1,4 +1,60 @@
-# ⚠️ Error
+# ⚠️ ERROR Collection ⚠️
+
+## SQL Error: [ERR-02189: Error in deleting rows. Only rows in VOLATILE / LOOKUP table can be deleted.]
+
+로그를 기록하는 시계열 TimeSeries 데이터베이스 특성상 일반 DB 처럼 데이터를 콕✔집어 삭제하는 것이 불가능하다. 수정도 불가능.
+
+### 불가능
+
+```sql
+DELETE FROM timeTable WHERE id = 't001';
+-- SQL Error: [ERR-02189: Error in deleting rows. Only rows in VOLATILE / LOOKUP table can be deleted.]
+```
+
+### 삭제 예시
+
+```sql
+-- 모든 데이터를 삭제한다.
+mach>DELETE FROM devices;
+10 row(s) deleted.
+ 
+-- 가장 오래된 5건을 삭제한다.
+mach>DELETE FROM devices OLDEST 5 ROWS;
+10 row(s) deleted.
+ 
+-- 최근 5건을 제외하고 모두 삭제한다.
+mach>DELETE FROM devices EXCEPT 5 ROWS;
+15 row(s) deleted.
+ 
+-- 2018년 6월 1일 이전의 데이터를 모두 삭제한다.
+mach>DELETE FROM devices BEFORE TO_DATE('2018-06-01', 'YYYY-MM-DD');
+50 row(s) deleted.
+```
+
+[🔗공식문서 참조](http://krdoc.machbase.com/pages/viewpage.action?pageId=3178971)
+
+
+
+## Sctl restart FATAL 
+
+### 문제
+
+프로젝트 재기동이 안됨 `sctl restart $vm`
+
+### 추적
+
+* 로그 확인 : Supervisor `out.log` 
+* jar가 잘못되었다는 에러메시지 확인
+* pkg 가서 보니 Symbolic Link에 연결한 jar가 크기 0인 파일이었다.
+
+### 해결
+
+제대로 빌드된 jar 로 바꿔서 해결
+
+* 삭제 말고 trash 로 이동
+* 아웃 로그 확인
+
+
 
 ## Maven Update : 401 Unauthorized
 
@@ -11,7 +67,9 @@
 * JDK security에 인증서 추가
 * Azure devOps에서 발급 받은 토큰 > `.m2/settings.xml` 에 추가
 
-했음에도 불구하고 라이브러리를 받아오지 못함.. 미해결 ㅠㅠ
+### 해결 방법
+
+server id가 달라서 발생했던 오류.. `devops-ccc` ➡️ `ccc`
 
 
 
